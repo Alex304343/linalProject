@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tasks generator</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css"
+            integrity="sha384-//SZkxyB7axjCAopkAL1E1rve+ZSPKapD89Lo/lLhcsXR+zOYl5z6zJZEFXil+q0"
+            crossorigin="anonymous"
+        />
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.js"
+            integrity="sha384-cpAIxua0Xbyc+XrpHQpCtJzGSZ6U2kS/FeyoKjnS+BgAYNV6uVUetVs/LC9+l3rs"
+            crossorigin="anonymous"
+        ></script>
+        <title>Генератор задач: составить вариант</title>
+    </head>
+    <body>
+        <h1>Составить вариант</h1>
+        <a href="index.html">На главную</a>
+        <div id="Task_1">
+            <h2>№1 Матрица+число</h2>
+            <div class="Task_child" id="Task_1_1">
+                <div id="formula_1_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Порядок матрицы" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_1_1">Добавить поле</button>
+        </div>
+        <div id="Task_2">
+            <h2>№2 Матрица * число</h2>
+            <div class="Task_child" id="Task_2_1">
+                <div id="formula_2_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="n строк" type="text">
+                    <input maxlength="2" placeholder="m столбцов" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_2_1">Добавить поле</button>
+        </div>
+        <div id="Task_3">
+            <h2>№3 Нахождение линейных комбинаций матриц</h2>
+            <div class="Task_child" id="Task_3_1">
+                <div id="formula_3_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="n строк" type="text">
+                    <input maxlength="2" placeholder="m столбцов" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_3_1">Добавить поле</button>
+        </div>
+        <div id="Task_4">
+            <h2>№4 Нахождение определителя матрицы</h2>
+            <div class="Task_child" id="Task_4_1">
+                <h4>Любым способом</h4>
+                <div id="formula_4_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Порядок матрицы" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_4_1">Добавить поле</button>
+            <div class="Task_child" id="Task_4_2">
+                <h4>Используя свойства</h4>
+                <div id="formula_4_2"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Порядок матрицы" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_4_2">Добавить поле</button>
+        </div>
+        <div id="Task_5">
+            <h2>№5 Транспонирование матрицы</h2>
+            <div class="Task_child" id="Task_5_1">
+                <div id="formula_5_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="n строк" type="text">
+                    <input maxlength="2" placeholder="m столбцов" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_5_1">Добавить поле</button>
+        </div>
+        <div id="Task_6">
+            <h2>№6 Нахождение обратной матрицы</h2>
+            <div class="Task_child" id="Task_6_1">
+                <h4>Любым способом</h4>
+                <div id="formula_6_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Порядок матрицы" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_6_1">Добавить поле</button>
+            <div class="Task_child" id="Task_6_2">
+                <h4>Методом Жордана-Гаусса</h4>
+                <div id="formula_6_2"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Порядок матрицы" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_6_2">Добавить поле</button>
+        </div>
+        <div id="Task_7">
+            <h2>№7 Умножение матриц</h2>
+            <div class="Task_child" id="Task_7_1">
+                <div id="formula_7_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="n строк 1 матрицы" type="text">
+                    <input maxlength="2" placeholder="m столбцов 1 матрицы" type="text">
+                    <input maxlength="2" placeholder="k столбцов 2 матрицы" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_7_1">Добавить поле</button>
+        </div>
+        <div id="Task_8">
+            <h2>№8 Решение матричных функций</h2>
+            <div class="Task_child" id="Task_8_1">
+                <div id="formula_8_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Порядок матрицы" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_8_1">Добавить поле</button>
+        </div>
+        <div id="Task_9">
+            <h2>№9 Решение матричных уравнений</h2>
+            <div class="Task_child" id="Task_9_1">
+                <div id="formula_9_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Порядок матрицы A" type="text">
+                    <input maxlength="2" placeholder="Число строк матрицы B" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_9_1">Добавить поле</button>
+            <div class="Task_child" id="Task_9_2">
+                <div id="formula_9_2"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Порядок матрицы A" type="text">
+                    <input maxlength="2" placeholder="Число столбцов матрицы B" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_9_2">Добавить поле</button>
+            <div class="Task_child" id="Task_9_3">
+                <div id="formula_9_3"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Порядок матрицы A" type="text">
+                    <input maxlength="2" placeholder="Порядок матрицы B" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_9_3">Добавить поле</button>
+        </div>
+        <div id="Task_10">
+            <h2>№10 Нахождение ранга матрицы</h2>
+            <div class="Task_child" id="Task_10_1">
+                <div id="formula_10_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="n строк" type="text">
+                    <input maxlength="2" placeholder="m столбцов" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_10_1">Добавить поле</button>
+        </div>
+        <div id="Task_11">
+            <h2>№11 Решение СЛАУ</h2>
+            <div class="Task_child" id="Task_11_1">
+                <h4>Любым способом</h4>
+                <div id="formula_11_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество переменных" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_11_1">Добавить поле</button>
+            <div class="Task_child" id="Task_11_2">
+                <h4>С помощью обратной матрицы</h4>
+                <div id="formula_11_2"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество переменных" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_11_2">Добавить поле</button>
+            <div class="Task_child" id="Task_11_3">
+                <h4>Методом Крамера</h4>
+                <div id="formula_11_3"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество переменных" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_11_3">Добавить поле</button>
+            <div class="Task_child" id="Task_11_4">
+                <h4>Методом Гаусса, нахождение ФСР, частного решения</h4>
+                <div id="formula_11_4"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество переменных" type="text">
+                    <input maxlength="2" placeholder="Количество уравнений" type="text">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_11_4">Добавить поле</button>
+        </div>
+        <button id="Getline">Сгенерировать</button>
+        <div hidden>
+            <h1 id="stringtitle">Код варианта:</h2>
+            <p id="stringcode"></p>
+            <div id="stringqr"></div>
+        </div>
+        <script src="qrcode.min.js"></script>
+        <script src="formulas.js"></script>
+        <script src="Professor_generator.js"></script>
+    </body>
+</html>
