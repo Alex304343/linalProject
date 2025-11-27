@@ -383,9 +383,11 @@ function generateVariant(seed, stringcode) {
             gen: (rng, block) => {
                 const matrix1 = rng.getMatrix(block[0], block[1]); 
                 const matrix2 = rng.getMatrix(block[0], block[1]); 
+                const number1 = rng.getInt(-10, 10);
+                const number2 = rng.getInt(-10, 10);
 
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatMatrix(matrix1)}+${fmt.formatMatrix(matrix2)}`;
+                return `${fmt.formatInt(number1)}*${fmt.formatMatrix(matrix1)}${fmt.formatInt(number2)}*${fmt.formatMatrix(matrix2)}`;
             }
         },
         {
