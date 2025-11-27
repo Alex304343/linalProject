@@ -65,6 +65,10 @@ function MatrixByNumber(matrix, num) {
     }
     return NewMatrix;
 }
+//Решение линейных комбинаций матриц вида 2A+3B
+function MatrixLinearCombination(num1, matrix1, num2, matrix2) {
+    return SumMatrixes(MatrixByNumber(matrix1,num1),MatrixByNumber(matrix2,num2))
+}
 //Транспонирование матрицы
 function Transpose(matrix) {
     let NewMatrix = [];
