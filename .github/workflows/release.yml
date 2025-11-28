@@ -21,13 +21,13 @@ jobs:
       - name: Загрузить архив профессора
         uses: actions/upload-artifact@v4
         with:
-          name: professor.zip
+          name: professor
           path: professor/
           retention-days: 5
 
       - name: Загрузить архив студента
         uses: actions/upload-artifact@v4
         with:
-          name: student.zip
+          name: student
           path: student/
           retention-days: 5
