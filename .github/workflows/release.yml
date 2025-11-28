@@ -1,0 +1,33 @@
+name: Сгенерировать релиз
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  bundle-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Вытянуть репозиторий
+        uses: actions/checkout@v4
+
+      - name: Скопировать общее содержимое
+        run: |
+          cp -r shared/. professor/
+          cp -r shared/. student/
+
+      - name: Создать архивы
+        run: |
+          zip -r professor.zip professor/
+          zip -r student.zip student/
+
+      - name: Загрузить архивы
+        uses: actions/upload-artifact@v4
+        with:
+          name: Release
+          path: |
+            professor.zip
+            student.zip
+          retention-days: 5

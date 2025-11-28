@@ -320,7 +320,7 @@ class Vector {
         let l1 = this.length;
         let l2 = vector.length;
         if (cz(l1) || cz(l2)) {
-            console.log("Длинна одного из векторов = 0, ошибка");
+            console.log("Длина одного из векторов = 0, ошибка");
             return null;
         }
         let cosAlpha = this.dot(vector) / (l1 * l2);
@@ -464,7 +464,7 @@ class Line {
         let vectorsangle = this.vector.AngleBetweenVectors(line.vector);
         if (vectorsangle == null) {
             console.log(
-                "Длинна одного из направляющих векторов прямых = 0, ошибка"
+                "Длина одного из направляющих векторов прямых = 0, ошибка"
             );
             return null;
         }
