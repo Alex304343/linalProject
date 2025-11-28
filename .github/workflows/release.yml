@@ -18,16 +18,16 @@ jobs:
           cp -r shared/. professor/
           cp -r shared/. student/
 
-      - name: Создать архивы
-        run: |
-          zip -r professor.zip professor/
-          zip -r student.zip student/
-
-      - name: Загрузить архивы
+      - name: Загрузить архив профессора
         uses: actions/upload-artifact@v4
         with:
-          name: Release
-          path: |
-            professor.zip
-            student.zip
+          name: professor.zip
+          path: professor/
+          retention-days: 5
+
+      - name: Загрузить архив студента
+        uses: actions/upload-artifact@v4
+        with:
+          name: student.zip
+          path: student/
           retention-days: 5
