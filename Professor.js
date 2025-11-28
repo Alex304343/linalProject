@@ -84,22 +84,40 @@ function handler_generateVarBtn() {
 }
 class FormatterforLATEX{
     /**
+     * Приводит все элементы матрицы к обыкновенным дробям
+     * @param {array[][]} matrix 
+     */
+    static normalizeMatrix(matrix){
+         return matrix.map(row => {
+    // row — это отдельная строка (массив чисел)
+    return row.map(num => {
+        // num — это конкретное число
+        return new Fraction(num).toLatex().replace(/\\frac/g, '\\dfrac');
+        });
+    });
+    }
+    static normalizeNumber(number){
+        return new Fraction(number).toLatex().replace(/\\frac/g, '\\dfrac');
+    }
+    /**
      * Превращает переданную матрицу (массив массивов) в LaTeX строку
      * @param {array [][]} matrix 
      */
     static formatMatrix(matrix) {
-        return `\\begin{pmatrix} ${matrix
+        const fractionMatrix=this.normalizeMatrix(matrix)
+        return `\\begin{pmatrix} ${fractionMatrix
             .map((row) => row.join(" & "))
-            .join(" \\\\ ")} \\\\ \\end{pmatrix}`;
+            .join(" \\\\[8pt] ")} \\\\ \\end{pmatrix}`;
     }
     /**
      * Превращает переданную матрицу определить (массив массивов) в LaTeX строку
      * @param {array [][]} matrix  
      */
     static formatDeterminant(matrix) {
-     return `\\begin{vmatrix} ${matrix
+        const fractionMatrix=this.normalizeMatrix(matrix)
+     return `\\begin{vmatrix} ${fractionMatrix
         .map((row) => row.join(" & "))
-        .join(" \\\\ ")} \\\\ \\end{vmatrix}`;
+        .join(" \\\\[8pt] ")} \\\\ \\end{vmatrix}`;
     }
 
     /**
@@ -109,7 +127,8 @@ class FormatterforLATEX{
      */
     static formatInt(num, bracketNegatives = false) {
         if (num >= 0) return "+" + num;
-        return (bracketNegatives ? "(" : "") + num + (bracketNegatives ? ")" : "");
+        const fractionNumber=this.normalizeNumber(num)
+        return (bracketNegatives ? "(" : "") + fractionNumber + (bracketNegatives ? ")" : "");
     }
     
     /**
@@ -360,8 +379,11 @@ function generateVariant(seed, stringcode) {
                 const matrix = rng.getMatrix(block[0]); 
                 const number = rng.getInt(-10, 10);
 
+                let ans=MatrixPlusNomber(matrix,number)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+                
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatMatrix(matrix)}${fmt.formatInt(number)}`;
+                return `${fmt.formatMatrix(matrix)}${fmt.formatInt(number)}=${ans}`;
             }
         },
         {
@@ -372,8 +394,11 @@ function generateVariant(seed, stringcode) {
                 const matrix = rng.getMatrix(block[0], block[1]); 
                 const number = rng.getInt(-10, 10);
 
+                let ans=MatrixByNumber(matrix,number)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatInt(number)}*${fmt.formatMatrix(matrix)}`;
+                return `${fmt.formatInt(number)}*${fmt.formatMatrix(matrix)}=${ans}`;
             }
         },
         {
@@ -383,9 +408,14 @@ function generateVariant(seed, stringcode) {
             gen: (rng, block) => {
                 const matrix1 = rng.getMatrix(block[0], block[1]); 
                 const matrix2 = rng.getMatrix(block[0], block[1]); 
+                const number1 = rng.getInt(-10, 10);
+                const number2 = rng.getInt(-10, 10);
+
+                let ans=MatrixLinearCombination(number1,matrix1,number2,matrix2)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
 
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatMatrix(matrix1)}+${fmt.formatMatrix(matrix2)}`;
+                return `${fmt.formatInt(number1)}*${fmt.formatMatrix(matrix1)}${fmt.formatInt(number2)}*${fmt.formatMatrix(matrix2)}=${ans}`;
             }
         },
         {
@@ -395,8 +425,11 @@ function generateVariant(seed, stringcode) {
             gen: (rng, block) => {
                 const matrix = rng.getMatrix(block[0]); 
 
+                let ans=Det(matrix)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatInt(ans);
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDeterminant(matrix)}`;
+                return `${fmt.formatDeterminant(matrix)}=${ans}`;
             }
         },
         {
@@ -406,8 +439,11 @@ function generateVariant(seed, stringcode) {
             gen: (rng, block) => {
                 const matrix = rng.getMatrix(block[0]); 
 
+                let ans=Det(matrix)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatInt(ans);
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDeterminant(matrix)}`;
+                return `${fmt.formatDeterminant(matrix)}=${ans}`;
             }
         },
         {
@@ -417,8 +453,11 @@ function generateVariant(seed, stringcode) {
             gen: (rng, block) => {
                 const matrix = rng.getMatrix(block[0],block[1]); 
 
+                let ans=Transpose(matrix)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatMatrix(matrix)}^{T}`;
+                return `${fmt.formatMatrix(matrix)}^{T}=${ans}`;
             }
         },
         {
@@ -428,8 +467,11 @@ function generateVariant(seed, stringcode) {
             gen: (rng, block) => {
                 const matrix = rng.getMatrix(block[0]); 
 
+                let ans=InverseMatrix(matrix)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+                
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatMatrix(matrix)}^{-1}`;
+                return `${fmt.formatMatrix(matrix)}^{-1}=${ans}`;
             }
         },
         {
@@ -439,8 +481,11 @@ function generateVariant(seed, stringcode) {
             gen: (rng, block) => {
                 const matrix = rng.getMatrix(block[0]); 
 
+                let ans=InverseMatrix(matrix)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+                
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatMatrix(matrix)}^{-1}`;
+                return `${fmt.formatMatrix(matrix)}^{-1}=${ans}`;
             }
         },
         {
@@ -451,8 +496,11 @@ function generateVariant(seed, stringcode) {
                 const matrix1 = rng.getMatrix(block[0], block[1]); 
                 const matrix2 = rng.getMatrix(block[1], block[2]); 
 
+                let ans=MatrixMultiplication(matrix1,matrix2)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatMatrix(matrix1)}*${fmt.formatMatrix(matrix2)}`;
+                return `${fmt.formatMatrix(matrix1)}*${fmt.formatMatrix(matrix2)}=${ans}`;
             }
         },
         {
@@ -465,8 +513,11 @@ function generateVariant(seed, stringcode) {
                 const b = rng.getInt(-10,10); 
                 const c = rng.getInt(-10,10); 
 
+                let ans=calculateMatrixPolynomial(a ,b ,c ,matrix)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatInt(a)}${fmt.formatMatrix(matrix)}${fmt.formatInt(b)}${fmt.formatMatrix(matrix)}${fmt.formatInt(c)}`;
+                return `${fmt.formatInt(a)}${fmt.formatMatrix(matrix)}^2${fmt.formatInt(b)}${fmt.formatMatrix(matrix)}${fmt.formatInt(c)}=${ans}`;
             }
         },
         {
@@ -477,8 +528,11 @@ function generateVariant(seed, stringcode) {
                 const matrix1 = rng.getMatrix(block[0]); 
                 const matrix2 = rng.getMatrix(block[0], block[1]); 
 
+                let ans=EquationAXB(matrix1,matrix2)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+
                 // Форматируем в LaTeX (static call)
-                return `A=${fmt.formatMatrix(matrix1)}, B=${fmt.formatMatrix(matrix2)}`;
+                return `A=${fmt.formatMatrix(matrix1)}, B=${fmt.formatMatrix(matrix2)}\\text{; answer = }${ans}`;
             }
         },
         {
@@ -489,8 +543,11 @@ function generateVariant(seed, stringcode) {
                 const matrix1 = rng.getMatrix(block[0]); 
                 const matrix2 = rng.getMatrix(block[1], block[0]); 
 
+                let ans=EquationXAB(matrix1,matrix2)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+
                 // Форматируем в LaTeX (static call)
-                return `A=${fmt.formatMatrix(matrix1)}, B=${fmt.formatMatrix(matrix2)}`;
+                return `A=${fmt.formatMatrix(matrix1)}, B=${fmt.formatMatrix(matrix2)}\\text{; answer = }${ans}`;
             }
         },
         {
@@ -502,8 +559,11 @@ function generateVariant(seed, stringcode) {
                 const matrix2 = rng.getMatrix(block[1]); 
                 const matrix3 = rng.getMatrix(block[0], block[1]);
 
+                let ans=EquationAXBC(matrix1,matrix2,matrix3)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+
                 // Форматируем в LaTeX (static call)
-                return `A=${fmt.formatMatrix(matrix1)}, B=${fmt.formatMatrix(matrix2)}, C=${fmt.formatMatrix(matrix3)}`;
+                return `A=${fmt.formatMatrix(matrix1)}, B=${fmt.formatMatrix(matrix2)}, C=${fmt.formatMatrix(matrix3)}\\text{; answer = }${ans}`;
             }
         },
         {
@@ -513,8 +573,11 @@ function generateVariant(seed, stringcode) {
             gen: (rng, block) => {
                 const matrix = rng.getMatrix(block[0],block[1]); 
 
+                let ans=RangMatrix(matrix)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatInt(ans);
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatMatrix(matrix)}`;
+                return `${fmt.formatMatrix(matrix)}\\text{rang = }${ans}`;
             }
         },
         {
@@ -523,10 +586,14 @@ function generateVariant(seed, stringcode) {
             childIdx: 0,
             gen: (rng, block) => {
                 const matrix = rng.getMatrix(block[0]); 
-                const ans = rng.getMatrix(block[0],1);
+                const matrixans = rng.getMatrix(block[0],1);
+
+                let ans=SolvingEquations(matrix,matrixans)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+
 
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatSystem(matrix,ans)}`;
+                return `${fmt.formatSystem(matrix,matrixans)}\\text{; answer = }${ans}`;
             }
         },
         {
@@ -535,10 +602,14 @@ function generateVariant(seed, stringcode) {
             childIdx: 1,
             gen: (rng, block) => {
                 const matrix = rng.getMatrix(block[0]); 
-                const ans = rng.getMatrix(block[0],1);
+                const matrixans = rng.getMatrix(block[0],1);
+
+                let ans=SolvingEquations(matrix,matrixans)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+
 
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatSystem(matrix,ans)}`;
+                return `${fmt.formatSystem(matrix,matrixans)}\\text{; answer = }${ans}`;
             }
         },
         {
@@ -547,10 +618,14 @@ function generateVariant(seed, stringcode) {
             childIdx: 2,
             gen: (rng, block) => {
                 const matrix = rng.getMatrix(block[0]); 
-                const ans = rng.getMatrix(block[0],1);
+                const matrixans = rng.getMatrix(block[0],1);
+
+                let ans=SolvingEquations(matrix,matrixans)
+                ans = (ans === "determinant = 0" || ans == null) ? `\\text{no answer}` : fmt.formatMatrix(ans);
+
 
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatSystem(matrix,ans)}`;
+                return `${fmt.formatSystem(matrix,matrixans)}\\text{; answer = }${ans}`;
             }
         },
         {
