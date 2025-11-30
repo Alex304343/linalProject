@@ -447,7 +447,7 @@ function generateVariant(seed, stringcode) {
             childIdx: 3,
             gen: (rng, block) => {
                 const matrix = rng.getMatrix(block[1],block[0]); 
-                const ans = rng.getMatrix(block[0],1);
+                const ans = rng.getMatrix(block[1],1);
 
                 // Форматируем в LaTeX (static call)
                 return `${fmt.formatSystem(matrix,ans)}`;
