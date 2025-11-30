@@ -13,21 +13,24 @@ jobs:
       - name: Вытянуть репозиторий
         uses: actions/checkout@v4
 
-      - name: Скопировать общее содержимое
-        run: |
-          cp -r shared/. professor/
-          cp -r shared/. student/
-
+      # Создаем архив для профессора.
+      # Внутри будут лежать две папки рядом: "professor" и "shared".
       - name: Загрузить архив профессора
         uses: actions/upload-artifact@v4
         with:
-          name: professor
-          path: professor/
+          name: professor_release
+          path: |
+            professor/
+            shared/
           retention-days: 5
 
+      # Создаем архив для студента.
+      # Внутри будут лежать две папки рядом: "student" и "shared".
       - name: Загрузить архив студента
         uses: actions/upload-artifact@v4
         with:
-          name: student
-          path: student/
+          name: student_release
+          path: |
+            student/
+            shared/
           retention-days: 5
