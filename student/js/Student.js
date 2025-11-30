@@ -184,17 +184,17 @@ function generateVariant(seed, stringcode) {
                 children: [
                     {
                         description:
-                            "Решите матричное уравнение вида $A \\cdot X = B$:",
+                            fmt.r`Решите матричное уравнение вида $A \cdot X = B$:`,
                         instances: [],
                     },
                     {
                         description:
-                            "Решите матричное уравнение вида $X \\cdot A = B$:",
+                            fmt.r`Решите матричное уравнение вида $X \cdot A = B$:`,
                         instances: [],
                     },
                     {
                         description:
-                            "Решите матричное уравнение вида $A \\cdot X \\cdot B = C$:",
+                            fmt.r`Решите матричное уравнение вида $A \cdot X \cdot B = C$:`,
                         instances: [],
                     },
                 ],

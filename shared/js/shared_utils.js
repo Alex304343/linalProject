@@ -1,39 +1,39 @@
-class FormatterforLATEX{
+class FormatterforLATEX {
     /**
      * Приводит все элементы матрицы к обыкновенным дробям
      * @param {array[][]} matrix 
      */
-    static normalizeMatrix(matrix){
-         return matrix.map(row => {
-    // row — это отдельная строка (массив чисел)
-    return row.map(num => {
-        // num — это конкретное число
-        return new Fraction(num).toLatex().replace(/\\frac/g, '\\dfrac');
+    static normalizeMatrix(matrix) {
+        return matrix.map(row => {
+            // row — это отдельная строка (массив чисел)
+            return row.map(num => {
+                // num — это конкретное число
+                return new Fraction(num).toLatex().replace(/\\frac/g, String.raw`\dfrac`);
+            });
         });
-    });
     }
-    static normalizeNumber(number){
-        return new Fraction(number).toLatex().replace(/\\frac/g, '\\dfrac');
+    static normalizeNumber(number) {
+        return new Fraction(number).toLatex().replace(/\\frac/g, String.raw`\dfrac`);
     }
     /**
-     * Превращает переданную матрицу (массив массивов) в LaTeX строку
+     * Превращает переданную матрицу (массив массивов) в LaTeX строку матрицы
      * @param {array [][]} matrix 
      */
     static formatMatrix(matrix) {
-        const fractionMatrix=this.normalizeMatrix(matrix)
-        return `\\begin{pmatrix} ${fractionMatrix
+        const fractionMatrix = this.normalizeMatrix(matrix)
+        return String.raw`\begin{pmatrix} ${fractionMatrix
             .map((row) => row.join(" & "))
-            .join(" \\\\[8pt] ")} \\\\ \\end{pmatrix}`;
+            .join(String.raw` \\[8pt] `)} \\ \end{pmatrix}`;
     }
     /**
-     * Превращает переданную матрицу определить (массив массивов) в LaTeX строку
+     * Превращает переданную матрицу (массив массивов) в LaTeX строку определителя
      * @param {array [][]} matrix  
      */
     static formatDeterminant(matrix) {
-        const fractionMatrix=this.normalizeMatrix(matrix)
-     return `\\begin{vmatrix} ${fractionMatrix
-        .map((row) => row.join(" & "))
-        .join(" \\\\[8pt] ")} \\\\ \\end{vmatrix}`;
+        const fractionMatrix = this.normalizeMatrix(matrix)
+        return String.raw`\begin{vmatrix} ${fractionMatrix
+            .map((row) => row.join(" & "))
+            .join(String.raw` \\[8pt] `)} \\ \end{vmatrix}`;
     }
 
     /**
@@ -43,10 +43,10 @@ class FormatterforLATEX{
      */
     static formatInt(num, bracketNegatives = false) {
         if (num >= 0) return "+" + num;
-        const fractionNumber=this.normalizeNumber(num)
+        const fractionNumber = this.normalizeNumber(num)
         return (bracketNegatives ? "(" : "") + fractionNumber + (bracketNegatives ? ")" : "");
     }
-    
+
     /**
      * Форматирует СЛАУ на основе матрицы коэффициентов (A) и столбца свободных членов (B)
      * @param {array [][]} matrixA 
@@ -54,23 +54,27 @@ class FormatterforLATEX{
      */
     static formatSystem(matrixA, matrixB) {
         let lines = [];
-        for(let row=0; row < matrixA.length; row++){
+        for (let row = 0; row < matrixA.length; row++) {
             let line = "";
             let not0 = false;
-            for(let col=0; col < matrixA[row].length; col++){
-                if(matrixA[row][col] == 0) continue;
+            for (let col = 0; col < matrixA[row].length; col++) {
+                if (matrixA[row][col] == 0) continue;
                 not0 = true;
                 // Красивый вывод знаков: если это не первый элемент и число положительное, ставим +
-                line += `${(matrixA[row][col] > 0 && line !== "") ? `+` : ``}${matrixA[row][col]}x_{${col+1}}`;
+                line += `${(matrixA[row][col] > 0 && line !== "") ? `+` : ``}${matrixA[row][col]}x_{${col + 1}}`;
             }
             if (!not0) line += `0`;
             line += `=${matrixB[row][0]}`;
             lines.push(line);
         }
-        return `\\left\\{\\begin{array}{l}${lines.join(` \\\\ `)}\\end{array}\\right.`;
+        return String.raw`\left\{\begin{array}{l}${lines.join(String.raw` \\ `)}\end{array}\right.`;
     }
 }
 
+/**
+ * Alias для String.raw
+ */
+FormatterforLATEX.r = String.raw;
 
 class Random {
     constructor(seedString) {
@@ -105,7 +109,7 @@ class Random {
     /**
      * Возвращает целое число в диапазоне [min, max]
      */
-    getInt(min=-10, max=10) {
+    getInt(min = -10, max = 10) {
         return Math.floor(this.next() * (max - min + 1)) + min;
     }
 
@@ -116,7 +120,7 @@ class Random {
      * @param {number} min - минимальное значение элемента
      * @param {number} max - максимальное значение элемента
      */
-    getMatrix(rows, cols=rows, min = -10, max = 10) {
+    getMatrix(rows, cols = rows, min = -10, max = 10) {
         let lines = [];
 
         for (let i = 0; i < rows; i++) {

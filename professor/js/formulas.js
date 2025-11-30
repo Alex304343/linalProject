@@ -18,181 +18,181 @@ function safeRender(tex, placeId) {
         console.error('KaTeX render error for', placeId, err);
     }
 }
-
+const fmt = FormatterforLATEX;
 ArrFormulas = [
-    [`\\begin{pmatrix}
-    3 & 2 & 1 \\\\
-    0 & 4 & 3\\\\
-    2 & -1 & 3\\\\
-    \\end{pmatrix}
+    [fmt.r`\begin{pmatrix}
+    3 & 2 & 1 \\
+    0 & 4 & 3\\
+    2 & -1 & 3\\
+    \end{pmatrix}
     +1
     `,
     "formula_1_1"],
-    [`\\begin{pmatrix}
-    3 & 2 \\\\
-    0 & 4 \\\\
-    2 & -1 \\\\
-    \\end{pmatrix}
+    [fmt.r`\begin{pmatrix}
+    3 & 2 \\
+    0 & 4 \\
+    2 & -1 \\
+    \end{pmatrix}
     *1
     `,
     "formula_2_1"],
-    [`3A + 2B=?\\\\
-    A = \\begin{pmatrix}
-    2 & 1 & -1 \\\\
+    [fmt.r`3A + 2B=?\\
+    A = \begin{pmatrix}
+    2 & 1 & -1 \\
     0 & 1 & 4 
-    \\end{pmatrix}, 
-    \\quad 
-    B = \\begin{pmatrix}
-    1 & 0 & -2 \\\\
+    \end{pmatrix}, 
+    \quad 
+    B = \begin{pmatrix}
+    1 & 0 & -2 \\
     4 & 1 & 0 
-    \\end{pmatrix}
+    \end{pmatrix}
     `,
     "formula_3_1"],
-    [`\\begin{vmatrix}
-    3 & 2 & 1 \\\\
-    0 & 4 & 3\\\\
-    2 & -1 & 3\\\\
-    \\end{vmatrix}
+    [fmt.r`\begin{vmatrix}
+    3 & 2 & 1 \\
+    0 & 4 & 3\\
+    2 & -1 & 3\\
+    \end{vmatrix}
     `,
     "formula_4_1"],
-    [`\\begin{vmatrix}
-    3 & 2 & 1 \\\\
-    0 & 4 & 3\\\\
-    2 & -1 & 3\\\\
-    \\end{vmatrix}
+    [fmt.r`\begin{vmatrix}
+    3 & 2 & 1 \\
+    0 & 4 & 3\\
+    2 & -1 & 3\\
+    \end{vmatrix}
     `,
     "formula_4_2"],
-    [`\\begin{pmatrix}
-    3 & 2 \\\\
-    0 & 4 \\\\
-    2 & -1 \\\\
-    \\end{pmatrix}
+    [fmt.r`\begin{pmatrix}
+    3 & 2 \\
+    0 & 4 \\
+    2 & -1 \\
+    \end{pmatrix}
     ^{T}
     `,
     "formula_5_1"],
-    [`\\begin{pmatrix}
-    3 & 2 & 1 \\\\
-    0 & 4 & 3\\\\
-    2 & -1 & 3\\\\
-    \\end{pmatrix}
+    [fmt.r`\begin{pmatrix}
+    3 & 2 & 1 \\
+    0 & 4 & 3\\
+    2 & -1 & 3\\
+    \end{pmatrix}
     ^{-1}
     `,
     "formula_6_1"],
-    [`\\begin{pmatrix}
-    3 & 2 & 1 \\\\
-    0 & 4 & 3\\\\
-    2 & -1 & 3\\\\
-    \\end{pmatrix}
+    [fmt.r`\begin{pmatrix}
+    3 & 2 & 1 \\
+    0 & 4 & 3\\
+    2 & -1 & 3\\
+    \end{pmatrix}
     ^{-1}
     `,
     "formula_6_2"],
-    [`\\begin{pmatrix}
-    3 & 2 \\\\
-    0 & 4 \\\\
-    2 & -1 \\\\
-    \\end{pmatrix}
+    [fmt.r`\begin{pmatrix}
+    3 & 2 \\
+    0 & 4 \\
+    2 & -1 \\
+    \end{pmatrix}
     *
-    \\begin{pmatrix}
-    3 & 2 \\\\
-    0 & 4 \\\\
-    \\end{pmatrix}
+    \begin{pmatrix}
+    3 & 2 \\
+    0 & 4 \\
+    \end{pmatrix}
     `,
     "formula_7_1"],
-    [`\\begin{aligned}
-    f(x)&=2x^2+1x+3 \\\\
-    f(A)&=?\\\\
-    A&=\\begin{pmatrix}
-    3 & 2 & 1 \\\\
-    0 & 4 & 3\\\\
-    2 & -1 & 3\\\\
-    \\end{pmatrix}
-    \\end{aligned}
+    [fmt.r`\begin{aligned}
+    f(x)&=2x^2+1x+3 \\
+    f(A)&=?\\
+    A&=\begin{pmatrix}
+    3 & 2 & 1 \\
+    0 & 4 & 3\\
+    2 & -1 & 3\\
+    \end{pmatrix}
+    \end{aligned}
     `,
     "formula_8_1"],
-    [`A \\cdot X = B\\\\
-    A = \\begin{pmatrix}
-    5 & 6 \\\\
+    [fmt.r`A \cdot X = B\\
+    A = \begin{pmatrix}
+    5 & 6 \\
     -2 & -3
-    \\end{pmatrix}, \\quad
-    B = \\begin{pmatrix}
-    -1 & 7 & 0 \\\\
+    \end{pmatrix}, \quad
+    B = \begin{pmatrix}
+    -1 & 7 & 0 \\
     1 & 2 & -6
-    \\end{pmatrix}
+    \end{pmatrix}
     `,
     "formula_9_1"],
-    [`X \\cdot A = B\\\\
-    A = \\begin{pmatrix}
-    2 & 3 \\\\
+    [fmt.r`X \cdot A = B\\
+    A = \begin{pmatrix}
+    2 & 3 \\
     2 & 4
-    \\end{pmatrix}, \\quad
-    B = \\begin{pmatrix}
-    -2 & 6 \\\\
-    2 & -3 \\\\
+    \end{pmatrix}, \quad
+    B = \begin{pmatrix}
+    -2 & 6 \\
+    2 & -3 \\
     0 & -3
-    \\end{pmatrix}
+    \end{pmatrix}
     `,
     "formula_9_2"],
-    [`A\\cdot X\\cdot B = C\\\\
-    A = \\begin{pmatrix} 
-    1 & 2 & 1 \\\\ 
-    2 & 3 & 0 \\\\ 
+    [fmt.r`A\cdot X\cdot B = C\\
+    A = \begin{pmatrix} 
+    1 & 2 & 1 \\ 
+    2 & 3 & 0 \\ 
     0 & 1 & -1 
-    \\end{pmatrix}, \\quad
-    B = \\begin{pmatrix} 
-    2 & 2 \\\\ 
+    \end{pmatrix}, \quad
+    B = \begin{pmatrix} 
+    2 & 2 \\ 
     4 & 3 
-    \\end{pmatrix}, \\quad
-    C = \\begin{pmatrix} 
-    2 & 1 \\\\ 
-    -3 & -1 \\\\ 
+    \end{pmatrix}, \quad
+    C = \begin{pmatrix} 
+    2 & 1 \\ 
+    -3 & -1 \\ 
     -3 & 2 
-    \\end{pmatrix}
+    \end{pmatrix}
     `,
     "formula_9_3"],
-    [`A = \\begin{pmatrix}
-    4 & -2 & 3 & 11 \\\\
-    7 & 8 & 9 & 10 \\\\
+    [fmt.r`A = \begin{pmatrix}
+    4 & -2 & 3 & 11 \\
+    7 & 8 & 9 & 10 \\
     -6 & 5 & 0 & -13
-    \\end{pmatrix}
+    \end{pmatrix}
     `,
     "formula_10_1"],
-    [`\\left\\{
-    \\begin{aligned}
-    x_1 - 2x_2 + x_3 - 3x_4 &= 6 \\\\
-    2x_1 - 5x_2 - 3x_3 + x_4 &= -11 \\\\
-    5x_1 - 8x_2 + 6x_3 - 4x_4 &= 24 \\\\
+    [fmt.r`\left\{
+    \begin{aligned}
+    x_1 - 2x_2 + x_3 - 3x_4 &= 6 \\
+    2x_1 - 5x_2 - 3x_3 + x_4 &= -11 \\
+    5x_1 - 8x_2 + 6x_3 - 4x_4 &= 24 \\
     3x_1 - x_2 + x_3 + 12x_4 &= -4
-    \\end{aligned}
-    \\right.
+    \end{aligned}
+    \right.
     `,
     "formula_11_1"],
-    [`\\left\\{
-    \\begin{aligned}
-    x_1 - 2x_2 + x_3 - 3x_4 &= 6 \\\\
-    2x_1 - 5x_2 - 3x_3 + x_4 &= -11 \\\\
-    5x_1 - 8x_2 + 6x_3 - 4x_4 &= 24 \\\\
+    [fmt.r`\left\{
+    \begin{aligned}
+    x_1 - 2x_2 + x_3 - 3x_4 &= 6 \\
+    2x_1 - 5x_2 - 3x_3 + x_4 &= -11 \\
+    5x_1 - 8x_2 + 6x_3 - 4x_4 &= 24 \\
     3x_1 - x_2 + x_3 + 12x_4 &= -4
-    \\end{aligned}
-    \\right.
+    \end{aligned}
+    \right.
     `,
     "formula_11_2"],
-    [`\\left\\{
-    \\begin{aligned}
-    x_1 - 2x_2 + x_3 - 3x_4 &= 6 \\\\
-    2x_1 - 5x_2 - 3x_3 + x_4 &= -11 \\\\
-    5x_1 - 8x_2 + 6x_3 - 4x_4 &= 24 \\\\
+    [fmt.r`\left\{
+    \begin{aligned}
+    x_1 - 2x_2 + x_3 - 3x_4 &= 6 \\
+    2x_1 - 5x_2 - 3x_3 + x_4 &= -11 \\
+    5x_1 - 8x_2 + 6x_3 - 4x_4 &= 24 \\
     3x_1 - x_2 + x_3 + 12x_4 &= -4
-    \\end{aligned}
-    \\right.
+    \end{aligned}
+    \right.
     `,
     "formula_11_3"],
-    [`\\left\\{
-    \\begin{aligned}
-    x_1 - 2x_2 + x_3 - 3x_4 &= 6 \\\\
-    2x_1 - 5x_2 - 3x_3 + x_4 &= -11 \\\\
-    5x_1 - 8x_2 + 6x_3 - 4x_4 &= 24 \\\\
-    \\end{aligned}
-    \\right.
+    [fmt.r`\left\{
+    \begin{aligned}
+    x_1 - 2x_2 + x_3 - 3x_4 &= 6 \\
+    2x_1 - 5x_2 - 3x_3 + x_4 &= -11 \\
+    5x_1 - 8x_2 + 6x_3 - 4x_4 &= 24 \\
+    \end{aligned}
+    \right.
     `,
     "formula_11_4"],
 ]
