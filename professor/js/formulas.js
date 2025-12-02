@@ -195,7 +195,66 @@ ArrFormulas = [
     \right.
     `,
     "formula_11_4"],
+    [fmt.r`\vec{m} = (2, 8, 4), \quad \vec{n} = (-5, -20, -10), \quad \vec{a} = 4\vec{m} + \vec{n}, \quad \vec{b} = 3\vec{m} - 2\vec{n}.`,
+    "formula_12_1"],
+    [fmt.r`\left|\vec{m}\right| = 8\sqrt{3}, \; \left|\vec{n}\right| = 3, \; \angle(\vec{m}, \vec{n}) = 30^\circ, \; \vec{a} = \vec{m} + 3\vec{n}`,
+    "formula_13_1"
+    ],
+    [fmt.r`A(5; 9; -6), B(3; 12; 0), C(2; 10; 2)`,
+    "formula_14_1"
+    ],
+    [fmt.r`\vec{a} = (4x - 3; -1; 3), \quad \vec{b} = (1; 2; -2)`,
+    "formula_15_1"
+    ],
+    [fmt.r`\vec{a} = \vec{m} + 4\vec{n}, \quad \vec{b} = \vec{m} + \vec{n}, \quad \left|\vec{m}\right| = 7\sqrt{2}, \quad \left|\vec{n}\right| = 6, \quad \angle(\vec{m}, \vec{n}) = 45^\circ`,
+    "formula_16_1"
+    ],
+    [fmt.r`A(2; 8; 3), B(-2; 3; 0), C(6; 11; 6)`,
+    "formula_17_1"
+    ],
+    [fmt.r`\vec{a}(-7;-11;9), \vec{b}(12;9;10), \vec{c}(5;-2;19)`,
+    "formula_18_1"
+    ],
+    [fmt.r`A(1,2,-1), B(5,5,1), C(3,8,-3), D(6,8,1)`,
+    "formula_19_1"
+    ],
+    [fmt.r`M(2; -1; -3), \quad l:\frac{x + 1}{2} = \frac{y - 1}{0} = \frac{z + 3}{5}`,
+    "formula_20_1"
+    ],
+    [fmt.r`\frac{x - 5}{1} = \frac{y + 4}{-3} = \frac{z - 2}{5}, \quad
+    \begin{cases}
+    x = -3 + 6t \\
+    y = -1 + 2t \\
+    z = 4
+    \end{cases}`,
+    "formula_21_1"
+    ],
+    [fmt.r`M(1;2;1), \vec{a}(2;-3;4), \vec{b}(3;2;-2)`,
+    "formula_22_1"
+    ],
+    [fmt.r`A(2;1;3), \quad \alpha: 2x - 3y + 4z + 5 = 0`,
+    "formula_23_1"
+    ],
+    [fmt.r`A(2, -1, 33), \quad  B(-1, 2, 5)`,
+    "formula_24_1"
+    ],
+    [fmt.r`A(2;1;3), \quad \alpha: 2x -y + 3z = -23`,
+    "formula_25_1"
+    ],
+    [fmt.r`A(4;-3;1), \quad \alpha: x+2y-z-3=0`,
+    "formula_26_1"
+    ],
+    [fmt.r`A(4, 3, 10),  \quad
+    l:\begin{cases}
+    x = 1 + 2t \\
+    y = 2 + 4t \\
+    z = 3 + 5t
+    \end{cases}
+    `,
+    "formula_27_1"
+    ]
 ]
+
 // Batch render once DOM is ready and schedule each render on idle (or next tick)
 document.addEventListener('DOMContentLoaded', () => {
     ArrFormulas.forEach(([tex, place]) => {
