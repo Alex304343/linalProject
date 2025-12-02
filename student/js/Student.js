@@ -230,6 +230,150 @@ function generateVariant(seed, stringcode) {
                     },
                 ],
             },
+            {
+                description: fmt.r`Даны векторы $\vec{m}$ и $\vec{n}$. Выясните, коллинеарны ли векторы $\vec{a}$ и $\vec{b}$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите $\left|\vec{a}\right|$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description:fmt.r`Дан $\triangle ABC$. Найдите угол $B$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description:fmt.r`При каких $x$ векторы $\vec{a}$ и $\vec{b}$ перпендикулярны?`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите площадь параллелограмма, построенного на векторах $\vec{a}$ и $\vec{b}$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите площадь $\triangle ABC$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Даны векторы $\vec{a}, \vec{b}, \vec{c}$. Выясните, компланарны ли векторы. Если векторы не компланарны, то найдите объем параллелепипеда, построенного на векторах $\vec{a}, \vec{b}, \vec{c}$.`,
+                children: [
+                    {
+                        description: null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите длину высоты пирамиды $ABCD$, опущенной из вершины $D$, если даны координаты вершин:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Составьте уравнение плоскости, проходящей через точку $M$ перпендикулярно прямой $l$:`,
+                children: [
+                    {
+                        description: null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: "Найдите угол между двумя прямыми:",
+                children: [
+                    {
+                        description: null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description:fmt.r`Составьте уравнение плоскости, проходящей через точку $M$ параллельно векторам $\vec{a}$ и $\vec{b}$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description:fmt.r`Составьте уравнение плоскости, проходящей через точку $A$ параллельно плоскости $\alpha$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description:fmt.r`Составьте каноническое уравнение прямой, проходящей через точки $A$ и $B$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите проекцию точки $A$ на плоскость $\alpha$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите точку, симметричную точке $A$ относительно плоскости $\alpha$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите проекцию точки $A$ на прямую $l$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
         ],
     };
 
@@ -452,7 +596,121 @@ function generateVariant(seed, stringcode) {
                 // Форматируем в LaTeX (static call)
                 return `${fmt.formatSystem(matrix,ans)}`;
             }
-        }
+        },
+        {
+            // №12 Даны векторы $\vec{m}$ и $\vec{n}$ . Выясните – коллинеарны ли векторы $\vec{a}$ и $\vec{b}$
+            taskIdx: 11, 
+            childIdx: 0,
+            gen: (rng) => {
+                const vector1 = rng.getVector()
+                const vector2 = rng.getVector()
+                const a = rng.getInt(-5, 5, true)
+                const b = rng.getInt(-5, 5, true)
+                const c = rng.getInt(-5, 5, true)
+                const d = rng.getInt(-5, 5, true)
+
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatVector(vector1,"m")}, ${fmt.space()} ${fmt.formatVector(vector2,"n")},${fmt.space()} ${fmt.formatVector(null,"a")}=${fmt.formatInt(a)}${fmt.formatVector(null,"m")}${fmt.formatInt(b)}${fmt.formatVector(null,"n")},${fmt.space()} ${fmt.formatVector(null,"b")}=${fmt.formatInt(c)}${fmt.formatVector(null,"m")}${fmt.formatInt(d)}${fmt.formatVector(null,"n")}`;
+            }
+        },
+        {
+            // №13 Найдите $\left|\vec{a}\right|$:
+            taskIdx: 12, 
+            childIdx: 0,
+            gen: (rng) => {
+                const vector1= rng.getInt(0,10,true)
+                const vector2= rng.getInt(0,10,true)
+                const angle= rng.getAngle()
+                const a = rng.getInt(-5,5,true)
+                const b = rng.getInt(-5,5,true)
+         
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatVectorModule("m")}=${vector1},${fmt.space()} ${fmt.formatVectorModule("n")}=${vector2},${fmt.space()} ${fmt.formatVectorAngle("m","n")}=${fmt.formatAngle(angle)},${fmt.space()}${fmt.formatVector(null,"a")}=${fmt.formatInt(a)}${fmt.formatVector(null,"m")}${fmt.formatInt(b)}${fmt.formatVector(null,"n")}`;
+            }
+        },
+        {
+            // №14 Дан $\triangle ABC$. Найдите угол $B$
+            taskIdx: 13, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const dot2 = rng.getDot()
+                const dot3 = rng.getDot()
+
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatDot(dot2,"B")},${fmt.space()}${fmt.formatDot(dot3,"C")}`;
+            }
+        },
+        {
+            // №15 При каких $x$ $\vec{a}$ и $\vec{b}$ перпендикулярны?
+            taskIdx: 14, 
+            childIdx: 0,
+            gen: (rng) => {
+                
+
+                // Форматируем в LaTeX (static call)
+                return ``;
+            }
+        },
+        {
+            // №16 Найдите площадь параллелограмма, построенного на векторах $\vec{a}$ и $\vec{b}$:
+            taskIdx: 15, 
+            childIdx: 0,
+            gen: (rng) => {
+                const vector1=rng.getInt(0,10,true)
+                const vector2=rng.getInt(0,10,true)
+                const angle= rng.getAngle()
+                const a = rng.getInt(-5, 5, true)
+                const b = rng.getInt(-5, 5, true)
+                const c = rng.getInt(-5, 5, true)
+                const d = rng.getInt(-5, 5, true)
+                
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatVector(null,"a")}=${fmt.formatInt(a)}${fmt.formatVector(null,"m")}${fmt.formatInt(b)}${fmt.formatVector(null,"n")},${fmt.space()}${fmt.formatVector(null,"b")}=${fmt.formatInt(c)}${fmt.formatVector(null,"m")}${fmt.formatInt(d)}${fmt.formatVector(null,"n")},${fmt.space()},${fmt.formatVectorModule("m")}=${fmt.formatInt(vector1)},${fmt.space()}${fmt.formatVectorModule("n")}=${fmt.formatInt(vector2)},${fmt.space()}${fmt.formatVectorAngle("m","n")}=${fmt.formatAngle(angle)}`;
+            }
+        },
+        {
+            // №17 Найдите площадь $\triangle ABC$:
+            taskIdx: 16, 
+            childIdx: 0,
+            gen: (rng) => {
+                const a=rng.getDot()
+                const b=rng.getDot()
+                const c=rng.getDot()
+                
+
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(a,"A")},${fmt.space()}${fmt.formatDot(b,"B")},${fmt.space()}${fmt.formatDot(c,"C")}`;
+            }
+        },
+        {
+            // №18 Даны векторы $\vec{a}, \vec{b}, \vec{c}$. Выясните, компланарны ли векторы. Если векторы не компланарны, то найдите объем параллелепипеда, построенного на векторах $\vec{a}, \vec{b}, \vec{c}$.
+            taskIdx: 17, 
+            childIdx: 0,
+            gen: (rng) => {
+                const a=rng.getVector()
+                const b=rng.getVector()
+                const c=rng.getVector()
+                
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatVector(a,"a")},${fmt.space()}${fmt.formatVector(b,"b")},${fmt.space()}${fmt.formatVector(c,"c")}`;
+            }
+        },
+        {
+            // №19 Найдите длину высоты пирамиды $ABCD$, опущенной из вершины $D$, если даны координаты вершин:
+            taskIdx: 18, 
+            childIdx: 0,
+            gen: (rng) => {
+                const a=rng.getDot()
+                const b=rng.getDot()
+                const c=rng.getDot()
+                const d=rng.getDot()
+    
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(a,"A")},${fmt.space()}${fmt.formatDot(b,"B")},${fmt.space()}${fmt.formatDot(c,"C")},${fmt.space()}${fmt.formatDot(d,"D")}`;
+            }
+        },
+
 
     ];
 
@@ -472,7 +730,7 @@ function generateVariant(seed, stringcode) {
         }
     });
     // endregion
-
+    
     // Делаем "prune" варианта. Если у ребёнка нет instances - удаляем. Если у task нет детей или их не стало в результате прошлого действия - удаляем.
     variant.tasks.forEach((task) => {
         task.children = task.children.filter(

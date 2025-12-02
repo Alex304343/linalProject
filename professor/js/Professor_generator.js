@@ -56,6 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
             if (first) first.focus();
         });
     });
+
+    document.querySelectorAll('div[id^="Task_"]').forEach(taskEl => {
+        taskEl.querySelectorAll('h2, h4').forEach(headerEl => {
+            renderMathInElement(headerEl, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                ],
+                throwOnError: false,
+            });
+        });
+    });
 });
 
 

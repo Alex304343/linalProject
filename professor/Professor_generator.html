@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
         <title>Tasks generator</title>
         <link
             rel="stylesheet"
@@ -14,13 +16,18 @@
             integrity="sha384-cpAIxua0Xbyc+XrpHQpCtJzGSZ6U2kS/FeyoKjnS+BgAYNV6uVUetVs/LC9+l3rs"
             crossorigin="anonymous"
         ></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/contrib/auto-render.min.js"
+            integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
+            crossorigin="anonymous"
+        ></script>
         <title>Генератор задач: составить вариант</title>
     </head>
     <body>
         <h1>Составить вариант</h1>
-        <a href="index.html">На главную</a>
         <div id="Task_1">
-            <h2>№1 Матрица+число</h2>
+            <h2>№1 Сложите матрицу и число:</h2>
             <div class="Task_child" id="Task_1_1">
                 <div id="formula_1_1"></div>
                 <div class="InputContainer">
@@ -31,7 +38,7 @@
             <button id="add_1_1">Добавить поле</button>
         </div>
         <div id="Task_2">
-            <h2>№2 Матрица * число</h2>
+            <h2>№2 Умножьте матрицу на число:</h2>
             <div class="Task_child" id="Task_2_1">
                 <div id="formula_2_1"></div>
                 <div class="InputContainer">
@@ -43,7 +50,7 @@
             <button id="add_2_1">Добавить поле</button>
         </div>
         <div id="Task_3">
-            <h2>№3 Нахождение линейных комбинаций матриц</h2>
+            <h2>№3 Найдите линейную комбинацию матриц:</h2>
             <div class="Task_child" id="Task_3_1">
                 <div id="formula_3_1"></div>
                 <div class="InputContainer">
@@ -55,9 +62,9 @@
             <button id="add_3_1">Добавить поле</button>
         </div>
         <div id="Task_4">
-            <h2>№4 Нахождение определителя матрицы</h2>
+            <h2>№4</h2>
             <div class="Task_child" id="Task_4_1">
-                <h4>Любым способом</h4>
+                <h4>Найдите определитель матрицы любым способом:</h4>
                 <div id="formula_4_1"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Порядок матрицы" type="text">
@@ -66,7 +73,7 @@
             </div>
             <button id="add_4_1">Добавить поле</button>
             <div class="Task_child" id="Task_4_2">
-                <h4>Используя свойства</h4>
+                <h4>Найдите определитель матрицы используя его свойства:</h4>
                 <div id="formula_4_2"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Порядок матрицы" type="text">
@@ -76,7 +83,7 @@
             <button id="add_4_2">Добавить поле</button>
         </div>
         <div id="Task_5">
-            <h2>№5 Транспонирование матрицы</h2>
+            <h2>№5 Транспонируйте матрицу:</h2>
             <div class="Task_child" id="Task_5_1">
                 <div id="formula_5_1"></div>
                 <div class="InputContainer">
@@ -88,9 +95,9 @@
             <button id="add_5_1">Добавить поле</button>
         </div>
         <div id="Task_6">
-            <h2>№6 Нахождение обратной матрицы</h2>
+            <h2>№6</h2>
             <div class="Task_child" id="Task_6_1">
-                <h4>Любым способом</h4>
+                <h4>Найдите обратную матрицу любым способом:</h4>
                 <div id="formula_6_1"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Порядок матрицы" type="text">
@@ -99,7 +106,7 @@
             </div>
             <button id="add_6_1">Добавить поле</button>
             <div class="Task_child" id="Task_6_2">
-                <h4>Методом Жордана-Гаусса</h4>
+                <h4>Найдите обратную матрицу методом Жордана-Гaусса:</h4>
                 <div id="formula_6_2"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Порядок матрицы" type="text">
@@ -109,7 +116,7 @@
             <button id="add_6_2">Добавить поле</button>
         </div>
         <div id="Task_7">
-            <h2>№7 Умножение матриц</h2>
+            <h2>№7 Найдите произведение матриц:</h2>
             <div class="Task_child" id="Task_7_1">
                 <div id="formula_7_1"></div>
                 <div class="InputContainer">
@@ -122,7 +129,7 @@
             <button id="add_7_1">Добавить поле</button>
         </div>
         <div id="Task_8">
-            <h2>№8 Решение матричных функций</h2>
+            <h2>№8 Найдите значение функции:</h2>
             <div class="Task_child" id="Task_8_1">
                 <div id="formula_8_1"></div>
                 <div class="InputContainer">
@@ -133,8 +140,9 @@
             <button id="add_8_1">Добавить поле</button>
         </div>
         <div id="Task_9">
-            <h2>№9 Решение матричных уравнений</h2>
+            <h2>№9</h2>
             <div class="Task_child" id="Task_9_1">
+                <h4>Решите матричное уравнение вида $A \cdot X = B$:</h4>
                 <div id="formula_9_1"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Порядок матрицы A" type="text">
@@ -144,6 +152,7 @@
             </div>
             <button id="add_9_1">Добавить поле</button>
             <div class="Task_child" id="Task_9_2">
+                <h4>Решите матричное уравнение вида $X \cdot A = B$:</h4>
                 <div id="formula_9_2"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Порядок матрицы A" type="text">
@@ -153,6 +162,7 @@
             </div>
             <button id="add_9_2">Добавить поле</button>
             <div class="Task_child" id="Task_9_3">
+                <h4>Решите матричное уравнение вида $A \cdot X \cdot B = C$:</h4>
                 <div id="formula_9_3"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Порядок матрицы A" type="text">
@@ -163,7 +173,7 @@
             <button id="add_9_3">Добавить поле</button>
         </div>
         <div id="Task_10">
-            <h2>№10 Нахождение ранга матрицы</h2>
+            <h2>№10 Определите ранг матрицы:</h2>
             <div class="Task_child" id="Task_10_1">
                 <div id="formula_10_1"></div>
                 <div class="InputContainer">
@@ -175,9 +185,9 @@
             <button id="add_10_1">Добавить поле</button>
         </div>
         <div id="Task_11">
-            <h2>№11 Решение СЛАУ</h2>
+            <h2>№11</h2>
             <div class="Task_child" id="Task_11_1">
-                <h4>Любым способом</h4>
+                <h4>Решите СЛАУ любым способом:</h4>
                 <div id="formula_11_1"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Количество переменных" type="text">
@@ -186,7 +196,7 @@
             </div>
             <button id="add_11_1">Добавить поле</button>
             <div class="Task_child" id="Task_11_2">
-                <h4>С помощью обратной матрицы</h4>
+                <h4>Решите СЛАУ с помощью обратной матрицы:</h4>
                 <div id="formula_11_2"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Количество переменных" type="text">
@@ -195,7 +205,7 @@
             </div>
             <button id="add_11_2">Добавить поле</button>
             <div class="Task_child" id="Task_11_3">
-                <h4>Методом Крамера</h4>
+                <h4>Решите СЛАУ методом Крамера:</h4>
                 <div id="formula_11_3"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Количество переменных" type="text">
@@ -204,7 +214,7 @@
             </div>
             <button id="add_11_3">Добавить поле</button>
             <div class="Task_child" id="Task_11_4">
-                <h4>Методом Гаусса, нахождение ФСР, частного решения</h4>
+                <h4>Решите СЛАУ методом Гаусса, найдите ФСР и частное решение неоднородной системы, если применимо:</h4>
                 <div id="formula_11_4"></div>
                 <div class="InputContainer">
                     <input maxlength="2" placeholder="Количество переменных" type="text">
@@ -214,6 +224,177 @@
             </div>
             <button id="add_11_4">Добавить поле</button>
         </div>
+        <div id="Task_12">
+            <h2>№12 Даны векторы $\vec{m}$ и $\vec{n}$. Выясните, коллинеарны ли векторы $\vec{a}$ и $\vec{b}$:</h2>
+            <div class="Task_child" id="Task_12_1">
+                <div id="formula_12_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_12_1">Добавить поле</button>
+        </div>
+        <div id="Task_13">
+            <h2>№13 Найдите $\left|a\right|$:</h2>
+            <div class="Task_child" id="Task_13_1">
+                <div id="formula_13_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_13_1">Добавить поле</button>
+        </div>
+        <div id="Task_14">
+            <h2>№14 Дан  $\triangle ABC$. Найдите угол $B$:</h2>
+            <div class="Task_child" id="Task_14_1">
+                <div id="formula_14_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_14_1">Добавить поле</button>
+        </div>
+        <div id="Task_15">
+            <h2>№15 При каких $x$ $\vec{a}$ и $\vec{b}$ перпендикулярны?:</h2>
+            <div class="Task_child" id="Task_15_1">
+                <div id="formula_15_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_15_1">Добавить поле</button>
+        </div>
+        <div id="Task_16">
+            <h2>№16 Найдите площадь параллелограмма, построенного на векторах $\vec{a}$ и $\vec{b}$:</h2>
+            <div class="Task_child" id="Task_16_1">
+                <div id="formula_16_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_16_1">Добавить поле</button>
+        </div>
+        <div id="Task_17">
+            <h2>№17 Найдите площадь $\triangle ABC$:</h2>
+            <div class="Task_child" id="Task_17_1">
+                <div id="formula_17_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_17_1">Добавить поле</button>
+        </div>
+        <div id="Task_18">
+            <h2>№18 Даны векторы a,b,c. Выясните, компланарны ли векторы. Если векторы не компланарны, то найдите объем параллелепипеда, построенного на векторах $\vec{a}, \vec{b}, \vec{c}$:</h2>
+            <div class="Task_child" id="Task_18_1">
+                <div id="formula_18_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_18_1">Добавить поле</button>
+        </div>
+        <div id="Task_19">
+            <h2>№19 Найдите длину высоты пирамиды $ABC$, опущенной из вершины $D$, если даны координаты вершин: </h2>
+            <div class="Task_child" id="Task_19_1">
+                <div id="formula_19_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_19_1">Добавить поле</button>
+        </div>
+        <div id="Task_20">
+            <h2>№20 Составьте уравнение плоскости, проходящей через точку $M$ перпендикулярно прямой $l$: </h2>
+            <div class="Task_child" id="Task_20_1">
+                <div id="formula_20_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_20_1">Добавить поле</button>
+        </div>
+        <div id="Task_21">
+            <h2>№21 Найдите угол между двумя прямыми: </h2>
+            <div class="Task_child" id="Task_21_1">
+                <div id="formula_21_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_21_1">Добавить поле</button>
+        </div>
+        <div id="Task_22">
+            <h2>№22 Составьте уравнение плоскости, проходящей через точку $M$ параллельно векторам $\vec{a}$ и $\vec{b}$: </h2>
+            <div class="Task_child" id="Task_22_1">
+                <div id="formula_22_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_22_1">Добавить поле</button>
+        </div>
+        <div id="Task_23">
+            <h2>№23 Составьте уравнение плоскости, проходящей через точку $A$ параллельно плоскости $\alpha$: </h2>
+            <div class="Task_child" id="Task_23_1">
+                <div id="formula_23_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_23_1">Добавить поле</button>
+        </div>
+        <div id="Task_24">
+            <h2>№24 Составьте каноническое уравнение прямой, проходящей через точки $A$ и $B$: </h2>
+            <div class="Task_child" id="Task_24_1">
+                <div id="formula_24_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_24_1">Добавить поле</button>
+        </div>
+        <div id="Task_25">
+            <h2>№25 Найдите проекцию точки $A$ на плоскость $\alpha$: </h2>
+            <div class="Task_child" id="Task_25_1">
+                <div id="formula_25_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_25_1">Добавить поле</button>
+        </div>
+        <div id="Task_26">
+            <h2>№26 Найдите точку, симметричную точке $A$ относительно плоскости $\alpha$: </h2>
+            <div class="Task_child" id="Task_26_1">
+                <div id="formula_26_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_26_1">Добавить поле</button>
+        </div>
+        <div id="Task_26">
+            <h2>№26 Найдите точку, симметричную точке $A$ относительно плоскости $\alpha$: </h2>
+            <div class="Task_child" id="Task_26_1">
+                <div id="formula_26_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_26_1">Добавить поле</button>
+        </div>
+        <div id="Task_27">
+            <h2>№27 Найдите проекцию точки $A$ на прямую $l$: </h2>
+            <div class="Task_child" id="Task_27_1">
+                <div id="formula_27_1"></div>
+                <div class="InputContainer">
+                    <input maxlength="2" placeholder="Количество заданий" type="text">
+                </div>
+            </div>
+            <button id="add_27_1">Добавить поле</button>
+        </div>
+
         <button id="Getline">Сгенерировать</button>
         <div hidden>
             <h1 id="stringtitle">Код варианта:</h2>
