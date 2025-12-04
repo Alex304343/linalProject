@@ -154,6 +154,29 @@ class FormatterforLATEX {
     static space(){
         return String.raw` \quad `;
     }
+     /**
+     * Альфа
+     */
+    static Alpha(){
+        return String.raw`\alpha : `;
+    }
+     /**
+      * Форматирует каноническое уравнение прямой на основе точки и направляющего вектора
+      * @param {array[3]} dot точка
+      * @param {array[3]} vector направляющий вектор 
+      */
+    static formatKanonLine(dot,vector){
+        return String.raw`l : \frac{x${this.formatInt(dot[0])}}{${vector[0]}}=\frac{y${this.formatInt(dot[1])}}{${vector[1]}}=\frac{z${this.formatInt(dot[2])}}{${vector[2]}}`;
+    }
+    /**
+      * Форматирует параметрическое уравнение прямой на основе 
+      * @param {array[3]} dot точка
+      * @param {array[3]} vector направляющий вектор 
+      */
+     static formatSystemParamLine(dot,vector){
+        return String.raw`\begin{cases} x=${this.formatInt(dot[0])}${this.formatInt(vector[0])}t \\ y=${this.formatInt(dot[1])}${this.formatInt(vector[1])}t \\ z=${this.formatInt(dot[2])}${this.formatInt(vector[2])}t \end{cases}`
+     }
+
 }
 
 /**

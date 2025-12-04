@@ -258,7 +258,7 @@ function generateVariant(seed, stringcode) {
                 ],
             },
             {
-                description:fmt.r`При каких $x$ векторы $\vec{a}$ и $\vec{b}$ перпендикулярны?`,
+                description:fmt.r`Найти угол между векторами $\vec{c}$ и $\vec{d}$, если`,
                 children: [
                     {
                         description:null,
@@ -646,10 +646,15 @@ function generateVariant(seed, stringcode) {
             taskIdx: 14, 
             childIdx: 0,
             gen: (rng) => {
-                
+                const vector1= rng.getVector()
+                const vector2= rng.getVector()
+                const a= rng.getInt(-5,5,true)
+                const b= rng.getInt(-5,5,true)
+                const c= rng.getInt(-5,5,true)
+                const d= rng.getInt(-5,5,true)
 
                 // Форматируем в LaTeX (static call)
-                return ``;
+                return `${fmt.formatVector(null,"c")}=${fmt.formatInt(a)}${fmt.formatVector(null,"a")}${fmt.formatInt(b)}${fmt.formatVector(null,"b")},${fmt.space()}${fmt.formatVector(null,"d")}=${fmt.formatInt(c)}${fmt.formatVector(null,"a")}${fmt.formatInt(d)}${fmt.formatVector(null,"b")},${fmt.space()}${fmt.formatVector(vector1,"a")},${fmt.space()}${fmt.formatVector(vector2,"b")}`;
             }
         },
         {
@@ -710,8 +715,128 @@ function generateVariant(seed, stringcode) {
                 return `${fmt.formatDot(a,"A")},${fmt.space()}${fmt.formatDot(b,"B")},${fmt.space()}${fmt.formatDot(c,"C")},${fmt.space()}${fmt.formatDot(d,"D")}`;
             }
         },
+        {
+            // №20 Составьте уравнение плоскости, проходящей через точку $M$ перпендикулярно прямой $l$:
+            taskIdx: 19, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const dot0 = rng.getDot()
+                const vector = rng.getVector()
 
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(dot1,"M")},${fmt.space()}${fmt.formatKanonLine(dot0,vector)}`;
+            }
+        },
+        {
+            // №21 Найдите угол между двумя прямыми:
+            taskIdx: 20, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const vector1 = rng.getVector()
+                const dot2 = rng.getDot()
+                const vector2 = rng.getVector()
 
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatKanonLine(dot1,vector1)},${fmt.space()}k:${fmt.formatSystemParamLine(dot2,vector2)}`;
+            }
+        },
+        {
+            // №22 Составьте уравнение плоскости, проходящей через точку $M$ параллельно векторам $\vec{a}$ и $\vec{b}$:
+            taskIdx: 21, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const vector1 = rng.getVector()
+                const vector2 = rng.getVector()
+
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(dot1,"M")},${fmt.space()}${fmt.formatVector(vector1,"a")},${fmt.space()}${fmt.formatVector(vector2,"b")}`;
+            }
+        },
+        {
+            // №23 Составьте уравнение плоскости, проходящей через точку $A$ параллельно плоскости $\alpha$:
+            taskIdx: 22, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const a = rng.getInt()
+                const b = rng.getInt()
+                const c = rng.getInt()
+                const d = rng.getInt()
+
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
+            }
+        },
+        {
+            // №24 Составьте каноническое уравнение прямой, проходящей через точки $A$ и $B$:
+            taskIdx: 23, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const dot2 = rng.getDot()
+
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatDot(dot2,"B")}`;
+            }
+        },
+        {
+            // №25 Найдите проекцию точки $A$ на плоскость $\alpha$:
+            taskIdx: 24, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const a = rng.getInt()
+                const b = rng.getInt()
+                const c = rng.getInt()
+                const d = rng.getInt()
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}=${fmt.formatInt(d)}`;
+            }
+        },
+        {
+            // №26 Найдите точку, симметричную точке $A$ относительно плоскости $\alpha$:
+            taskIdx: 25, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const a = rng.getInt()
+                const b = rng.getInt()
+                const c = rng.getInt()
+                const d = rng.getInt()
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
+            }
+        },
+        {
+            // №26 Найдите точку, симметричную точке $A$ относительно плоскости $\alpha$:
+            taskIdx: 25, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const a = rng.getInt()
+                const b = rng.getInt()
+                const c = rng.getInt()
+                const d = rng.getInt()
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
+            }
+        },
+        {
+            // №27 Найдите проекцию точки $A$ на прямую $l$:
+            taskIdx: 26, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const dot2 = rng.getDot()
+                const vector2 = rng.getVector()
+             
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatSystemParamLine(dot2,vector2)}`;
+            }
+        },
     ];
 
     // Единый цикл обработки

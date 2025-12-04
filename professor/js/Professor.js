@@ -231,6 +231,150 @@ function generateVariant(seed, stringcode) {
                     },
                 ],
             },
+            {
+                description: fmt.r`Даны векторы $\vec{m}$ и $\vec{n}$. Выясните, коллинеарны ли векторы $\vec{a}$ и $\vec{b}$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите $\left|\vec{a}\right|$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description:fmt.r`Дан $\triangle ABC$. Найдите угол $B$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description:fmt.r`Найти угол между векторами $\vec{c}$ и $\vec{d}$, если`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите площадь параллелограмма, построенного на векторах $\vec{a}$ и $\vec{b}$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите площадь $\triangle ABC$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Даны векторы $\vec{a}, \vec{b}, \vec{c}$. Выясните, компланарны ли векторы. Если векторы не компланарны, то найдите объем параллелепипеда, построенного на векторах $\vec{a}, \vec{b}, \vec{c}$.`,
+                children: [
+                    {
+                        description: null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите длину высоты пирамиды $ABCD$, опущенной из вершины $D$, если даны координаты вершин:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Составьте уравнение плоскости, проходящей через точку $M$ перпендикулярно прямой $l$:`,
+                children: [
+                    {
+                        description: null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: "Найдите угол между двумя прямыми:",
+                children: [
+                    {
+                        description: null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description:fmt.r`Составьте уравнение плоскости, проходящей через точку $M$ параллельно векторам $\vec{a}$ и $\vec{b}$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description:fmt.r`Составьте уравнение плоскости, проходящей через точку $A$ параллельно плоскости $\alpha$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description:fmt.r`Составьте каноническое уравнение прямой, проходящей через точки $A$ и $B$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите проекцию точки $A$ на плоскость $\alpha$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите точку, симметричную точке $A$ относительно плоскости $\alpha$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
+            {
+                description: fmt.r`Найдите проекцию точки $A$ на прямую $l$:`,
+                children: [
+                    {
+                        description:null,
+                        instances: [],
+                    }
+                ],
+            },
         ],
     };
 
@@ -507,8 +651,70 @@ function generateVariant(seed, stringcode) {
                 // Форматируем в LaTeX (static call)
                 return `${fmt.formatSystem(matrix,ans)}`;
             }
-        }
+        },
+        {
+            // №12 Даны векторы $\vec{m}$ и $\vec{n}$ . Выясните – коллинеарны ли векторы $\vec{a}$ и $\vec{b}$
+            taskIdx: 11, 
+            childIdx: 0,
+            gen: (rng) => {
+                const vector1 = rng.getVector()
+                const vector2 = rng.getVector()
+                const a = rng.getInt(-5, 5, true)
+                const b = rng.getInt(-5, 5, true)
+                const c = rng.getInt(-5, 5, true)
+                const d = rng.getInt(-5, 5, true)
 
+                const vectorm = new Vector(vector1[0],vector1[1],vector1[2])
+                const vectorn = new Vector(vector2[0],vector2[1],vector2[2])
+                const vectora = vectorm.Sum(vectorn,a,b)
+                const vectorb = vectorm.Sum(vectorn,c,d)
+                let ans=vectora.Сollinear(vectorb)
+                if (ans === "determinant = 0" || ans == null){
+                    ans = fmt.r`\text{no answer}`
+                }
+                else if (ans){
+                    ans = fmt.r`\text{Да}`
+                }
+                else{
+                    ans = fmt.r`\text{Нет}`
+                }
+
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatVector(vector1,"m")}, ${fmt.space()} ${fmt.formatVector(vector2,"n")},${fmt.space()} ${fmt.formatVector(null,"a")}=${fmt.formatInt(a)}${fmt.formatVector(null,"m")}${fmt.formatInt(b)}${fmt.formatVector(null,"n")},${fmt.space()} ${fmt.formatVector(null,"b")}=${fmt.formatInt(c)}${fmt.formatVector(null,"m")}${fmt.formatInt(d)}${fmt.formatVector(null,"n")} : ${ans}`;
+            }
+        },
+        {
+            // №13 Найдите $\left|\vec{a}\right|$:
+            taskIdx: 12, 
+            childIdx: 0,
+            gen: (rng) => {
+                const vector1= rng.getInt(0,10,true)
+                const vector2= rng.getInt(0,10,true)
+                const angle= rng.getAngle()
+                const a = rng.getInt(-5,5,true)
+                const b = rng.getInt(-5,5,true)
+
+                let ans = Vector.SumVectorsByLensAndAngle(vector1,vector2,angle,a,b)
+                console.log(ans)
+                ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.formatVectorModule("a")+` = ${ans.toFixed(5)}`;
+
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatVectorModule("m")}=${vector1},${fmt.space()} ${fmt.formatVectorModule("n")}=${vector2},${fmt.space()} ${fmt.formatVectorAngle("m","n")}=${fmt.formatAngle(angle)},${fmt.space()}${fmt.formatVector(null,"a")}=${fmt.formatInt(a)}${fmt.formatVector(null,"m")}${fmt.formatInt(b)}${fmt.formatVector(null,"n")} : ${ans}`;
+            }
+        },
+        {
+            // №14 Дан $\triangle ABC$. Найдите угол $B$
+            taskIdx: 13, 
+            childIdx: 0,
+            gen: (rng) => {
+                const dot1 = rng.getDot()
+                const dot2 = rng.getDot()
+                const dot3 = rng.getDot()
+
+                // Форматируем в LaTeX (static call)
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatDot(dot2,"B")},${fmt.space()}${fmt.formatDot(dot3,"C")}`;
+            }
+        },
     ];
 
     // Единый цикл обработки

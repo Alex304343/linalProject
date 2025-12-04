@@ -284,6 +284,29 @@ class Vector {
     static ByDots(dot1, dot2) {
         return new Vector(dot2.x - dot1.x, dot2.y - dot1.y, dot2.z - dot1.z);
     }
+    /**
+     * Векторное произведение через длины и угол
+     * @param {number} vector1 длина 1 вектора
+     * @param {number} vector2 длина 2 вектора
+     * @param {number} angle 
+     */
+    static CrossByLensAndAngle(vector1, vector2,angle){
+        return(vector1*vector2*Math.sin(angle))
+    }
+    /**
+     * Длинна вектора, образованного 2 векторами через длины и угол
+     * @param {number} vector1 длина 1 вектора
+     * @param {number} vector2 длина 2 вектора
+     * @param {number} angle угол
+     * @param {number} a коэф при 1 векторе
+     * @param {number} b коэф при 2 векторе
+     */
+    static SumVectorsByLensAndAngle(vector1,vector2,angle,a=1,b=1){
+        const term1 = Math.pow(a * vector1, 2);
+        const term2 = Math.pow(b * vector2, 2);
+        const term3 = 2 * a * b * vector1 * vector2 * Math.cos(angle);
+        return Math.sqrt(term1 + term2 + term3);
+    }
 
     get length() {
         return Math.hypot(this.x, this.y, this.z);
@@ -329,6 +352,44 @@ class Vector {
         if (cosAlpha > 1) cosAlpha = 1;
         if (cosAlpha < -1) cosAlpha = -1;
         return Math.acos(cosAlpha);
+    }
+    /**
+     * Произведение вектора на число
+     * @param {number} num 
+     */
+    VectorByNomber(num){
+        return new Vector(this.x*num,this.y*num,this.z*num)
+    }
+    /**
+     * Вектор - сумма векторов
+     * @param {Vector} vector 2 вектор
+     * @param {number} a коофицент при 1 векторе
+     * @param {number} b коофицент при 2 векторе
+     */
+    Sum(vector, a=1, b=1){
+        let vector1=this.VectorByNomber(a)
+        let vector2=vector.VectorByNomber(b)
+        return new Vector(vector1.x+vector2.x,vector1.y+vector2.y,vector1.z+vector2.z)
+    }
+    /**
+     * Проверяет вектора на колиниарность
+     * @param {Vector} vector 
+     */
+    Сollinear(vector) {
+        // Если один из векторов нулевой длины - обычно считается коллинеарным всему
+        if (cz(this.length) || cz(vector.length)) {
+            return true; 
+        }
+
+        // Считаем векторное произведение
+        let crossProduct = this.cross(vector);
+
+        // Если его длина равна 0 (с учетом погрешности cz), то векторы коллинеарны
+        if (cz(crossProduct.length)) {
+            return true;
+        }
+        
+        return false;
     }
 }
 class Line {
