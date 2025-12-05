@@ -716,7 +716,7 @@ function generateVariant(seed, stringcode) {
                 let BC=Vector.ByDots(B,C)
 
                 let ans = BA.AngleBetweenVectors(BC)
-                ans = (ans == null) ? fmt.r`\text{no answer}` : fmt.r`\angle B = ${fmt.formatAngle(fmt.Round(ans))}`;
+                ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r`\angle B = ${fmt.formatAngle(fmt.Round(ans))}`;
 
                 // Форматируем в LaTeX (static call)
                 return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatDot(dot2,"B")},${fmt.space()}${fmt.formatDot(dot3,"C")},${fmt.space()}${ans}`;
@@ -740,7 +740,7 @@ function generateVariant(seed, stringcode) {
                 let v4= v1.Sum(v2,c,d)
 
                 let ans= v3.AngleBetweenVectors(v4)
-                ans =(ans==null) ? fmt.r`\text{no answer}` :fmt.r`\angle ${fmt.Alpha()}=${fmt.formatAngle(fmt.Round(ans))}`
+                ans =(ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` :fmt.r`\angle ${fmt.Alpha()}=${fmt.formatAngle(fmt.Round(ans))}`
 
                 // Форматируем в LaTeX (static call)
                 return `${fmt.formatVector(null,"c")}=${fmt.formatInt(a)}${fmt.formatVector(null,"a")}${fmt.formatInt(b)}${fmt.formatVector(null,"b")},${fmt.space()}${fmt.formatVector(null,"d")}=${fmt.formatInt(c)}${fmt.formatVector(null,"a")}${fmt.formatInt(d)}${fmt.formatVector(null,"b")},${fmt.space()}${fmt.formatVector(vector1,"a")},${fmt.space()}${fmt.formatVector(vector2,"b")},${fmt.space()}${ans}`;
@@ -760,7 +760,7 @@ function generateVariant(seed, stringcode) {
                 const d = rng.getInt(-5, 5, true)
 
                 let ans = Vector.AreaOfParallelogramByLeens(vector1,vector2,angle,a,b,c,d)
-                ans =(ans==null) ? fmt.r`\text{no answer}` :fmt.r`S=${fmt.Round(ans)}`
+                ans =(ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` :fmt.r`S=${fmt.Round(ans)}`
 
                 // Форматируем в LaTeX (static call)
                 return `${fmt.formatVector(null,"a")}=${fmt.formatInt(a)}${fmt.formatVector(null,"m")}${fmt.formatInt(b)}${fmt.formatVector(null,"n")},${fmt.space()}${fmt.formatVector(null,"b")}=${fmt.formatInt(c)}${fmt.formatVector(null,"m")}${fmt.formatInt(d)}${fmt.formatVector(null,"n")},${fmt.space()},${fmt.formatVectorModule("m")}=${fmt.formatInt(vector1)},${fmt.space()}${fmt.formatVectorModule("n")}=${fmt.formatInt(vector2)},${fmt.space()}${fmt.formatVectorAngle("m","n")}=${fmt.formatAngle(angle)},${fmt.space()}${ans}`;
@@ -775,9 +775,18 @@ function generateVariant(seed, stringcode) {
                 const b=rng.getDot()
                 const c=rng.getDot()
                 
+                let A=new Dot(a[0],a[1],a[2])
+                let B=new Dot(b[0],b[1],b[2])
+                let C=new Dot(c[0],c[1],c[2])
 
+                let v1=Vector.ByDots(C,A)
+                let v2=Vector.ByDots(C,B)
+                
+                let ans=v1.AreaTriangle(v2)
+                ans=(ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r`S=${fmt.Round(ans)}`
+                
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(a,"A")},${fmt.space()}${fmt.formatDot(b,"B")},${fmt.space()}${fmt.formatDot(c,"C")}`;
+                return `${fmt.formatDot(a,"A")},${fmt.space()}${fmt.formatDot(b,"B")},${fmt.space()}${fmt.formatDot(c,"C")},${fmt.space()}${ans}`;
             }
         },
         {
@@ -788,9 +797,24 @@ function generateVariant(seed, stringcode) {
                 const a=rng.getVector()
                 const b=rng.getVector()
                 const c=rng.getVector()
-                
+
+                let vector1 = new Vector(a[0],a[1],a[2])
+                let vector2 = new Vector(b[0],b[1],b[2])
+                let vector3 = new Vector(c[0],c[1],c[2])
+
+                let ans = Math.abs(vector1.Cross3Vectors(vector2, vector3))
+                if (ans === "determinant = 0" || ans == null){
+                    ans = fmt.r`\text{no answer}`
+                }
+                else if (ans==0){
+                    ans = fmt.r`\text{Векторы компланарны}`
+                }
+                else{
+                    ans = fmt.r`\text{V = }${fmt.Round(ans)}`
+                }
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatVector(a,"a")},${fmt.space()}${fmt.formatVector(b,"b")},${fmt.space()}${fmt.formatVector(c,"c")}`;
+                return `${fmt.formatVector(a,"a")},${fmt.space()}${fmt.formatVector(b,"b")},${fmt.space()}${fmt.formatVector(c,"c")},${fmt.space()}${ans}`;
             }
         },
         {
@@ -802,9 +826,18 @@ function generateVariant(seed, stringcode) {
                 const b=rng.getDot()
                 const c=rng.getDot()
                 const d=rng.getDot()
+                
+                let A=new Dot(a[0],a[1],a[2])
+                let B=new Dot(b[0],b[1],b[2])
+                let C=new Dot(c[0],c[1],c[2])
+                let D=new Dot(d[0],d[1],d[2])
+
+                let plain1= Plane.By3Dots(A,B,C)
+                let ans =plain1.DistanceToDot(D)
+                ans=(ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r`H=${fmt.Round(ans)}`
     
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(a,"A")},${fmt.space()}${fmt.formatDot(b,"B")},${fmt.space()}${fmt.formatDot(c,"C")},${fmt.space()}${fmt.formatDot(d,"D")}`;
+                return `${fmt.formatDot(a,"A")},${fmt.space()}${fmt.formatDot(b,"B")},${fmt.space()}${fmt.formatDot(c,"C")},${fmt.space()}${fmt.formatDot(d,"D")},${fmt.space()}${ans}`;
             }
         },
         {
@@ -815,6 +848,12 @@ function generateVariant(seed, stringcode) {
                 const dot1 = rng.getDot()
                 const dot0 = rng.getDot()
                 const vector = rng.getVector()
+            
+                let M = new Dot(dot1[0],dot1[1],dot1[2])
+                let d0 = new Dot(dot0[0],dot0[1],dot0[2])
+                let v = new Vector(vector[0],vector[1],vector[2])
+                let ans = Plane.ByNormalAndDot(v,M)
+                ans=(ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r`H=${fmt.Round(ans)}`
 
                 // Форматируем в LaTeX (static call)
                 return `${fmt.formatDot(dot1,"M")},${fmt.space()}${fmt.formatKanonLine(dot0,vector)}`;
@@ -830,8 +869,15 @@ function generateVariant(seed, stringcode) {
                 const dot2 = rng.getDot()
                 const vector2 = rng.getVector()
 
+                v1=new Vector(vector1[0],vector1[1],vector1[2])
+                v2=new Vector(vector2[0],vector2[1],vector2[2])
+
+                let ans = v1.AngleBetweenVectors(v2)
+                console.log(ans)
+                ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r`\angle = ${fmt.formatAngle(fmt.Round(ans))}`;
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatKanonLine(dot1,vector1)},${fmt.space()}k:${fmt.formatSystemParamLine(dot2,vector2)}`;
+                return `${fmt.formatKanonLine(dot1,vector1)},${fmt.space()}k:${fmt.formatSystemParamLine(dot2,vector2)},${fmt.space()}${ans}`;
             }
         },
         {
@@ -843,8 +889,15 @@ function generateVariant(seed, stringcode) {
                 const vector1 = rng.getVector()
                 const vector2 = rng.getVector()
 
+                let d1=new Dot(dot1[0],dot1[1],dot1[2])
+                let v1=new Vector(vector1[0],vector1[1],vector1[2])
+                let v2=new Vector(vector2[0],vector2[1],vector2[2])
+
+                let ans=Plane.By2VectorsAndDot(v1,v2,d1)
+                ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r`${fmt.Alpha()}:${fmt.formatPlane(ans.a,ans.b,ans.c,ans.d)}`
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"M")},${fmt.space()}${fmt.formatVector(vector1,"a")},${fmt.space()}${fmt.formatVector(vector2,"b")}`;
+                return `${fmt.formatDot(dot1,"M")},${fmt.space()}${fmt.formatVector(vector1,"a")},${fmt.space()}${fmt.formatVector(vector2,"b")},${fmt.space()}${ans}`;
             }
         },
         {
@@ -858,8 +911,14 @@ function generateVariant(seed, stringcode) {
                 const c = rng.getInt()
                 const d = rng.getInt()
 
+                let d1= new Dot(dot1[0],dot1[1],dot1[2])
+                let n1= new Vector(a,b,c)
+
+                let ans=Plane.ByNormalAndDot(n1,d1)
+                ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r`\gamma : ${fmt.formatPlane(ans.a,ans.b,ans.c,ans.d)}`
+                
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatPlane(a,b,c,d)},${fmt.space()}${ans}`
             }
         },
         {
@@ -885,7 +944,7 @@ function generateVariant(seed, stringcode) {
                 const c = rng.getInt()
                 const d = rng.getInt()
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}: ${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}=${fmt.formatInt(d)}`;
+                 return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatPlane(a,b,c,d)}`;
             }
         },
         {
@@ -899,21 +958,7 @@ function generateVariant(seed, stringcode) {
                 const c = rng.getInt()
                 const d = rng.getInt()
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}: ${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
-            }
-        },
-        {
-            // №26 Найдите точку, симметричную точке $A$ относительно плоскости $\alpha$:
-            taskIdx: 25, 
-            childIdx: 0,
-            gen: (rng) => {
-                const dot1 = rng.getDot()
-                const a = rng.getInt()
-                const b = rng.getInt()
-                const c = rng.getInt()
-                const d = rng.getInt()
-                // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}: ${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatPlane(a,b,c,d)}`;
             }
         },
         {

@@ -238,7 +238,7 @@ ArrFormulas = [
     [fmt.r`A(2, -1, 33), \quad  B(-1, 2, 5)`,
     "formula_24_1"
     ],
-    [fmt.r`A(2;1;3), \quad \alpha: 2x -y + 3z = -23`,
+    [fmt.r`A(2;1;3), \quad \alpha: 2x -y + 3z +23 = 0`,
     "formula_25_1"
     ],
     [fmt.r`A(4;-3;1), \quad \alpha: x+2y-z-3=0`,

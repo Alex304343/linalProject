@@ -767,7 +767,7 @@ function generateVariant(seed, stringcode) {
                 const d = rng.getInt()
 
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatPlane(a,b,c,d)}`
             }
         },
         {
@@ -793,7 +793,7 @@ function generateVariant(seed, stringcode) {
                 const c = rng.getInt()
                 const d = rng.getInt()
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}: ${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}=${fmt.formatInt(d)}`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatPlane(a,b,c,d)}`;
             }
         },
         {
@@ -806,22 +806,10 @@ function generateVariant(seed, stringcode) {
                 const b = rng.getInt()
                 const c = rng.getInt()
                 const d = rng.getInt()
+
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}: ${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
-            }
-        },
-        {
-            // №26 Найдите точку, симметричную точке $A$ относительно плоскости $\alpha$:
-            taskIdx: 25, 
-            childIdx: 0,
-            gen: (rng) => {
-                const dot1 = rng.getDot()
-                const a = rng.getInt()
-                const b = rng.getInt()
-                const c = rng.getInt()
-                const d = rng.getInt()
-                // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}: ${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatPlane(a,b,c,d)}`;
             }
         },
         {

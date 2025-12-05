@@ -154,9 +154,9 @@ class FormatterforLATEX {
     static space(){
         return String.raw` \quad `;
     }
-     /**
-     * Альфа
-     */
+    /**
+    * Альфа
+    */
     static Alpha(){
         return String.raw` \alpha `;
     }
@@ -173,7 +173,7 @@ class FormatterforLATEX {
       * @param {array[3]} dot точка
       * @param {array[3]} vector направляющий вектор 
       */
-     static formatSystemParamLine(dot,vector){
+    static formatSystemParamLine(dot,vector){
         return String.raw`\begin{cases} x=${this.formatInt(dot[0])}${this.formatInt(vector[0])}t \\ y=${this.formatInt(dot[1])}${this.formatInt(vector[1])}t \\ z=${this.formatInt(dot[2])}${this.formatInt(vector[2])}t \end{cases}`
     }
     /**
@@ -183,6 +183,18 @@ class FormatterforLATEX {
     static Round(num){
         return parseFloat((num.toFixed(5)))
     }
+    /**
+     * Форматирует плоскость в латех
+     * @param {number} A 
+     * @param {number} B 
+     * @param {number} C 
+     * @param {number} D 
+     * @returns 
+     */
+    static formatPlane(A,B,C,D){
+        return String.raw` ${this.formatInt(A)}${this.formatDot(null,"x")}${this.formatInt(B)}${this.formatDot(null,"y")}${this.formatInt(C)}${this.formatDot(null,"z")}${this.formatInt(D)}=0 `; 
+    }
+
 
 }
 

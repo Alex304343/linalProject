@@ -347,6 +347,21 @@ class Vector {
             this.x * v.y - this.y * v.x
         );
     }
+    
+    Cross3Vectors(vector1,vector2){
+        let arr=[[this.x,this.y,this.z],[vector1.x,vector1.y,vector1.z],[vector2.x,vector2.y,vector2.z]]
+        return Det(arr)
+
+    }
+    
+    /**
+     * Площадь треугольника на 2 векторах
+     * @param {Vector} vector 
+     */
+    AreaTriangle(vector){
+        let ans=this.cross(vector)
+        return ans.length/2
+    }
     /**
      * Угол между векторами
      * @param {Vector} vector
