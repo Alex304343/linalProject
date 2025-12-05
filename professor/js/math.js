@@ -307,7 +307,19 @@ class Vector {
         const term3 = 2 * a * b * vector1 * vector2 * Math.cos(angle);
         return Math.sqrt(term1 + term2 + term3);
     }
-
+    /**
+     * Площадбь параллелограмма, образованного векторами вида \vec{c} = 4\vec{a} + \vec{b}, \quad \vec{d} = -\vec{a} + 7\vec{b}, \quad \vec{a}(-1;1;2), \quad \vec{b}(1;3; 8)
+     * @param {number} vector1 длина 1 вектора
+     * @param {number} vector2 длина 2 вектора
+     * @param {number} angle угол
+     * @param {number} a коэф при 1 векторе
+     * @param {number} b коэф при 2 векторе
+     * @param {number} b коэф при 2 векторе
+     * @param {number} b коэф при 2 векторе
+     */
+    static AreaOfParallelogramByLeens(vector1,vector2,angle,a,b,c,d){
+        return (Math.abs(a*d - b*c)*vector1*vector2*Math.sin(angle))
+    }
     get length() {
         return Math.hypot(this.x, this.y, this.z);
     }

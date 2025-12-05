@@ -642,7 +642,7 @@ function generateVariant(seed, stringcode) {
             }
         },
         {
-            // №15 При каких $x$ $\vec{a}$ и $\vec{b}$ перпендикулярны?
+            // №15 Найти угол между векторами $\vec{c}$ и $\vec{d}$, если:
             taskIdx: 14, 
             childIdx: 0,
             gen: (rng) => {
@@ -767,7 +767,7 @@ function generateVariant(seed, stringcode) {
                 const d = rng.getInt()
 
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
             }
         },
         {
@@ -793,7 +793,7 @@ function generateVariant(seed, stringcode) {
                 const c = rng.getInt()
                 const d = rng.getInt()
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}=${fmt.formatInt(d)}`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}: ${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}=${fmt.formatInt(d)}`;
             }
         },
         {
@@ -807,7 +807,7 @@ function generateVariant(seed, stringcode) {
                 const c = rng.getInt()
                 const d = rng.getInt()
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}: ${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
             }
         },
         {
@@ -821,7 +821,7 @@ function generateVariant(seed, stringcode) {
                 const c = rng.getInt()
                 const d = rng.getInt()
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}: ${fmt.formatInt(a)}${fmt.formatDot(null,"x")}${fmt.formatInt(b)}${fmt.formatDot(null,"y")}${fmt.formatInt(c)}${fmt.formatDot(null,"z")}${fmt.formatInt(d)}=0`;
             }
         },
         {

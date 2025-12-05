@@ -203,7 +203,7 @@ ArrFormulas = [
     [fmt.r`A(5; 9; -6), B(3; 12; 0), C(2; 10; 2)`,
     "formula_14_1"
     ],
-    [fmt.r`\vec{a} = (4x - 3; -1; 3), \quad \vec{b} = (1; 2; -2)`,
+    [fmt.r`\vec{c} = 4\vec{a} + \vec{b}, \quad \vec{d} = -\vec{a} + 7\vec{b}, \quad \vec{a}(-1;1;2), \quad \vec{b}(1;3; 8)`,
     "formula_15_1"
     ],
     [fmt.r`\vec{a} = \vec{m} + 4\vec{n}, \quad \vec{b} = \vec{m} + \vec{n}, \quad \left|\vec{m}\right| = 7\sqrt{2}, \quad \left|\vec{n}\right| = 6, \quad \angle(\vec{m}, \vec{n}) = 45^\circ`,

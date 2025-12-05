@@ -158,7 +158,7 @@ class FormatterforLATEX {
      * Альфа
      */
     static Alpha(){
-        return String.raw`\alpha : `;
+        return String.raw` \alpha `;
     }
      /**
       * Форматирует каноническое уравнение прямой на основе точки и направляющего вектора
@@ -175,7 +175,14 @@ class FormatterforLATEX {
       */
      static formatSystemParamLine(dot,vector){
         return String.raw`\begin{cases} x=${this.formatInt(dot[0])}${this.formatInt(vector[0])}t \\ y=${this.formatInt(dot[1])}${this.formatInt(vector[1])}t \\ z=${this.formatInt(dot[2])}${this.formatInt(vector[2])}t \end{cases}`
-     }
+    }
+    /**
+     * Округление числа 
+     * @param {number} num 
+     */
+    static Round(num){
+        return parseFloat((num.toFixed(5)))
+    }
 
 }
 
