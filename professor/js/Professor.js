@@ -250,7 +250,7 @@ function generateVariant(seed, stringcode) {
                 ],
             },
             {
-                description:fmt.r`Дан $\triangle ABC$. Найдите угол $B$:`,
+                description:fmt.r`Дан $\triangle ABC$. Найдите $\angle B$:`,
                 children: [
                     {
                         description:null,
@@ -695,7 +695,6 @@ function generateVariant(seed, stringcode) {
                 const b = rng.getInt(-5,5,true)
 
                 let ans = Vector.SumVectorsByLensAndAngle(vector1,vector2,angle,a,b)
-                console.log(ans)
                 ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.formatVectorModule("a")+` = ${ans.toFixed(5)}`;
 
                 // Форматируем в LaTeX (static call)
@@ -703,7 +702,7 @@ function generateVariant(seed, stringcode) {
             }
         },
         {
-            // №14 Дан $\triangle ABC$. Найдите угол $B$
+            // №14 Дан $\triangle ABC$. Найдите $\angle B$
             taskIdx: 13, 
             childIdx: 0,
             gen: (rng) => {
@@ -711,8 +710,17 @@ function generateVariant(seed, stringcode) {
                 const dot2 = rng.getDot()
                 const dot3 = rng.getDot()
 
+                let A = new Dot (dot1[0],dot1[1],dot1[2])
+                let B = new Dot (dot2[0],dot2[1],dot2[2])
+                let C = new Dot (dot3[0],dot3[1],dot3[2])
+                let BA=Vector.ByDots(B,A)
+                let BC=Vector.ByDots(B,C)
+
+                let ans = BA.AngleBetweenVectors(BC)
+                ans = (ans == null) ? fmt.r`\text{no answer}` : fmt.r`\angle B = ${fmt.formatAngle(ans)}`;
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatDot(dot2,"B")},${fmt.space()}${fmt.formatDot(dot3,"C")}`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatDot(dot2,"B")},${fmt.space()}${fmt.formatDot(dot3,"C")},${fmt.space()}${ans}`;
             }
         },
     ];

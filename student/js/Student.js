@@ -249,7 +249,7 @@ function generateVariant(seed, stringcode) {
                 ],
             },
             {
-                description:fmt.r`Дан $\triangle ABC$. Найдите угол $B$:`,
+                description:fmt.r`Дан $\triangle ABC$. Найдите $\angle B$:`,
                 children: [
                     {
                         description:null,
@@ -629,7 +629,7 @@ function generateVariant(seed, stringcode) {
             }
         },
         {
-            // №14 Дан $\triangle ABC$. Найдите угол $B$
+            // №14 Дан $\triangle ABC$. Найдите $\angle B$
             taskIdx: 13, 
             childIdx: 0,
             gen: (rng) => {
