@@ -643,6 +643,12 @@ class Plane {
         return new Plane(A, B, C, D);
     }
     /**
+     * Вектор нормали
+     */
+    get normal(){
+        return new Vector(this.a,this.b,this.c)
+    }
+    /**
      * Расстояние от плоскости до точки
      * @param {Dot} dot
      */
@@ -715,5 +721,34 @@ class Plane {
         }
         //Искомый угол = 90 градусов (PI/2) минус угол с нормалью
         return Math.PI / 2 - angleWithNormal;
+    }
+    /**
+     * Точка пересечения прямой и плоскости
+     * @param {Line} line 
+     */
+    PointIntersectionLinePlane(line) {
+    let denominator = this.a * line.vector.x + this.b * line.vector.y + this.c * line.vector.z;
+
+    // Если знаменатель 0, прямая параллельна плоскости (нет пересечения или лежит в ней)
+    if (cz(denominator)) {
+        return null; 
+    }
+
+    let t = -(this.a * line.dot.x + this.b * line.dot.y + this.c * line.dot.z + this.d) / denominator;
+
+    let x = line.dot.x + line.vector.x * t;
+    let y = line.dot.y + line.vector.y * t;
+    let z = line.dot.z + line.vector.z * t;
+    return new Dot(x, y, z);
+    }
+    /**
+     * Проекция точки на плоскость
+     * @param {Dot} dot 
+     */
+    ProjectionPointOnPlane(dot){
+        let vectorn = this.normal
+        let line = new Line(vectorn, dot)
+        return this.PointIntersectionLinePlane(line)
+
     }
 }

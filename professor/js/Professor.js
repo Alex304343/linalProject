@@ -868,7 +868,7 @@ function generateVariant(seed, stringcode) {
                 const vector1 = rng.getVector()
                 const dot2 = rng.getDot()
                 const vector2 = rng.getVector()
-                
+
                 v1=new Vector(vector1[0],vector1[1],vector1[2])
                 v2=new Vector(vector2[0],vector2[1],vector2[2])
 
@@ -956,8 +956,16 @@ function generateVariant(seed, stringcode) {
                 const b = rng.getInt()
                 const c = rng.getInt()
                 const d = rng.getInt()
+
+                let d1 = Dot.ByArray(dot1)
+                let plane = new Plane(a ,b ,c ,d)
+
+                let ans = plane.ProjectionPointOnPlane(d1)
+                console.log(ans)
+                ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r` ${fmt.formatDot([fmt.Round(ans.x),fmt.Round(ans.y),fmt.Round(ans.z)],"X")}`
+                
                 // Форматируем в LaTeX (static call)
-                 return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatPlane(a,b,c,d)}`;
+                 return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatPlane(a,b,c,d)},${fmt.space()}${ans}`;
             }
         },
         {
