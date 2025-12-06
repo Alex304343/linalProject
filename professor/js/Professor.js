@@ -868,12 +868,11 @@ function generateVariant(seed, stringcode) {
                 const vector1 = rng.getVector()
                 const dot2 = rng.getDot()
                 const vector2 = rng.getVector()
-
+                
                 v1=new Vector(vector1[0],vector1[1],vector1[2])
                 v2=new Vector(vector2[0],vector2[1],vector2[2])
 
                 let ans = v1.AngleBetweenVectors(v2)
-                console.log(ans)
                 ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r`\angle = ${fmt.formatAngle(fmt.Round(ans))}`;
 
                 // Форматируем в LaTeX (static call)
@@ -929,8 +928,22 @@ function generateVariant(seed, stringcode) {
                 const dot1 = rng.getDot()
                 const dot2 = rng.getDot()
 
+                let d1 = Dot.ByArray(dot1)
+                let d2 = Dot.ByArray(dot2)
+
+                let ans = Line.ByDots(d1,d2)
+
+                if (ans === "determinant = 0" || ans == null){
+                    ans = fmt.r`\text{no answer}`
+                }
+                else{
+                    let dot = ans.dot.toArray()
+                    let vector = ans.vector.toArray()
+                    ans = fmt.r`${fmt.formatKanonLine(dot, vector)}`
+                }
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatDot(dot2,"B")}`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatDot(dot2,"B")}, ${fmt.space()} ${ans}`;
             }
         },
         {

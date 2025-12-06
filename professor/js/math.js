@@ -279,6 +279,10 @@ class Dot {
     toArray() {
         return [this.x,this.y,this.z];
     }
+
+    static ByArray(dot) {
+        return new Dot(dot[0], dot[1], dot[2]);
+    }
 }
 class Vector {
     constructor(x, y, z) {

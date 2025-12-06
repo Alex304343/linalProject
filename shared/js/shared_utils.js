@@ -166,7 +166,7 @@ class FormatterforLATEX {
       * @param {array[3]} vector направляющий вектор 
       */
     static formatKanonLine(dot,vector){
-        return String.raw`l : \frac{x${this.formatInt(dot[0])}}{${vector[0]}}=\frac{y${this.formatInt(dot[1])}}{${vector[1]}}=\frac{z${this.formatInt(dot[2])}}{${vector[2]}}`;
+        return String.raw`l : \frac{x${this.formatInt(-dot[0])}}{${vector[0]}}=\frac{y${this.formatInt(-dot[1])}}{${vector[1]}}=\frac{z${this.formatInt(-dot[2])}}{${vector[2]}}`;
     }
     /**
       * Форматирует параметрическое уравнение прямой на основе 
