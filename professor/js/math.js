@@ -273,6 +273,12 @@ class Dot {
     DistanceToDot(dot) {
         return Math.hypot(this.x - dot.x, this.y - dot.y, this.z - dot.z);
     }
+    /**
+     * Преобразует точку в массив
+     */
+    toArray() {
+        return [this.x,this.y,this.z];
+    }
 }
 class Vector {
     constructor(x, y, z) {
@@ -417,6 +423,12 @@ class Vector {
         }
         
         return false;
+    }
+    /**
+     * Преобразует вектор в массив
+     */
+    toArray() {
+        return [this.x,this.y,this.z];
     }
 }
 class Line {
