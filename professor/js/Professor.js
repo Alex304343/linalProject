@@ -961,7 +961,6 @@ function generateVariant(seed, stringcode) {
                 let plane = new Plane(a ,b ,c ,d)
 
                 let ans = plane.ProjectionPointOnPlane(d1)
-                console.log(ans)
                 ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r` ${fmt.formatDot([fmt.Round(ans.x),fmt.Round(ans.y),fmt.Round(ans.z)],"X")}`
                 
                 // Форматируем в LaTeX (static call)
@@ -978,8 +977,16 @@ function generateVariant(seed, stringcode) {
                 const b = rng.getInt()
                 const c = rng.getInt()
                 const d = rng.getInt()
+
+                let d1 = Dot.ByArray(dot1)
+                let plane = new Plane(a ,b ,c ,d)
+                let projection = plane.ProjectionPointOnPlane(d1)
+                
+                let ans = new Dot(2*projection.x-d1.x,2*projection.y-d1.y,2*projection.z-d1.z)
+                ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r` ${fmt.formatDot([fmt.Round(ans.x),fmt.Round(ans.y),fmt.Round(ans.z)],"X")}`
+
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatPlane(a,b,c,d)}`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.Alpha()}:${fmt.formatPlane(a,b,c,d)},${fmt.space()}${ans}`;
             }
         },
         {
@@ -989,10 +996,18 @@ function generateVariant(seed, stringcode) {
             gen: (rng) => {
                 const dot1 = rng.getDot()
                 const dot2 = rng.getDot()
-                const vector2 = rng.getVector()
+                const vector = rng.getVector()
+
+                let d1 = Dot.ByArray(dot1)
+                let d2 = Dot.ByArray(dot2)
+                let v = Vector.ByArray(vector)
+                let line = new Line(v, d2) 
+
+                let ans = line.ProjectPointOnLine(d1)
+                ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r` ${fmt.formatDot([fmt.Round(ans.x),fmt.Round(ans.y),fmt.Round(ans.z)],"X")}`
              
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatSystemParamLine(dot2,vector2)}`;
+                return `${fmt.formatDot(dot1,"A")},${fmt.space()}${fmt.formatSystemParamLine(dot2,vector)},${fmt.space()}${ans}`;
             }
         }
     ];

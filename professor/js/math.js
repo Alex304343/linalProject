@@ -330,6 +330,13 @@ class Vector {
     static AreaOfParallelogramByLeens(vector1,vector2,angle,a,b,c,d){
         return (Math.abs(a*d - b*c)*vector1*vector2*Math.sin(angle))
     }
+    /**
+     * Вектор из массива
+     * @param {Array[3]} vector 
+     */
+    static ByArray(vector) {
+        return new Vector(vector[0], vector[1], vector[2]);
+    }
     get length() {
         return Math.hypot(this.x, this.y, this.z);
     }
@@ -449,7 +456,6 @@ class Line {
      * Прямая по точкам
      * @param {Dot} dot1
      * @param {Dot} dot2
-     * @returns
      */
     static ByDots(dot1, dot2) {
         let vector = Vector.ByDots(dot1, dot2);
@@ -576,6 +582,22 @@ class Line {
             vectorsangle = Math.PI - vectorsangle;
         }
         return vectorsangle;
+    }
+    /**
+     * Проекция точки на прямую
+     * @param {Dot} dot
+     */
+    ProjectPointOnLine(dot){
+        let vector = this.vector;
+        let dot0 = this.dot; // Точка на прямой
+        
+        let t = (vector.x*(dot.x-dot0.x)+vector.y*(dot.y-dot0.y)+vector.z*(dot.z-dot0.z)) / 
+                (vector.x*vector.x+vector.y*vector.y+vector.z*vector.z)
+        let x = dot0.x + vector.x * t
+        let y = dot0.y + vector.y * t
+        let z = dot0.z + vector.z * t
+        
+        return new Dot(x, y, z);
     }
 }
 class Plane {
