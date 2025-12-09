@@ -39,7 +39,7 @@ function DiagonalMatrixByNumber(num, len) {
     return matrix;
 }
 // Матрица + число
-function MatrixPlusNomber(matrix, num) {
+function MatrixPlusNumber(matrix, num) {
     return SumMatrixes(matrix, DiagonalMatrixByNumber(num, matrix.length));
 }
 //Сумма матриц (Матрицы ОДИНАКОВОЙ РАЗМЕРНОСТИ)
@@ -327,7 +327,7 @@ class Vector {
      * @param {number} b коэф при 2 векторе
      * @param {number} b коэф при 2 векторе
      */
-    static AreaOfParallelogramByLeens(vector1,vector2,angle,a,b,c,d){
+    static AreaOfParallelogramByLengths(vector1,vector2,angle,a,b,c,d){
         return (Math.abs(a*d - b*c)*vector1*vector2*Math.sin(angle))
     }
     /**
@@ -401,7 +401,7 @@ class Vector {
      * Произведение вектора на число
      * @param {number} num 
      */
-    VectorByNomber(num){
+    VectorByNumber(num){
         return new Vector(this.x*num,this.y*num,this.z*num)
     }
     /**
@@ -411,8 +411,8 @@ class Vector {
      * @param {number} b коофицент при 2 векторе
      */
     Sum(vector, a=1, b=1){
-        let vector1=this.VectorByNomber(a)
-        let vector2=vector.VectorByNomber(b)
+        let vector1=this.VectorByNumber(a)
+        let vector2=vector.VectorByNumber(b)
         return new Vector(vector1.x+vector2.x,vector1.y+vector2.y,vector1.z+vector2.z)
     }
     /**

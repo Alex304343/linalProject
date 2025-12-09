@@ -391,7 +391,7 @@ function generateVariant(seed, stringcode) {
                 const matrix = rng.getMatrix(block[0]); 
                 const number = rng.getInt(-10, 10);
 
-                let ans=MatrixPlusNomber(matrix,number)
+                let ans=MatrixPlusNumber(matrix,number)
                 ans = (ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.formatMatrix(ans);
                 
                 // Форматируем в LaTeX (static call)
@@ -759,7 +759,7 @@ function generateVariant(seed, stringcode) {
                 const c = rng.getInt(-5, 5, true)
                 const d = rng.getInt(-5, 5, true)
 
-                let ans = Vector.AreaOfParallelogramByLeens(vector1,vector2,angle,a,b,c,d)
+                let ans = Vector.AreaOfParallelogramByLengths(vector1,vector2,angle,a,b,c,d)
                 ans =(ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` :fmt.r`S=${fmt.Round(ans)}`
 
                 // Форматируем в LaTeX (static call)
