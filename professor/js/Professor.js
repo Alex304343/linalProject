@@ -853,10 +853,10 @@ function generateVariant(seed, stringcode) {
                 let d0 = new Dot(dot0[0],dot0[1],dot0[2])
                 let v = new Vector(vector[0],vector[1],vector[2])
                 let ans = Plane.ByNormalAndDot(v,M)
-                ans=(ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r`H=${fmt.Round(ans)}`
+                ans=(ans === "determinant = 0" || ans == null) ? fmt.r`\text{no answer}` : fmt.r`${fmt.Alpha()}:${fmt.formatPlane(ans.a,ans.d,ans.c,ans.d)}`
 
                 // Форматируем в LaTeX (static call)
-                return `${fmt.formatDot(dot1,"M")},${fmt.space()}${fmt.formatKanonLine(dot0,vector)}`;
+                return `${fmt.formatDot(dot1,"M")},${fmt.space()}${fmt.formatKanonLine(dot0,vector)},${fmt.space()}${ans}`;
             }
         },
         {
